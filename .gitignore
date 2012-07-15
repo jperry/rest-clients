@@ -1,0 +1,9 @@
+*.iws
+.gradle
+.idea
+build
+out
+gradle-app.setting
+
+# New archives are automatically generated in this folder.
+src/test/resources
