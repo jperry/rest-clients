@@ -8,7 +8,12 @@
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/kotlin" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/artifactory/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/common/build" />
+      <excludeFolder url="file://$MODULE_DIR$/gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/teamcity/build" />
+      <excludeFolder url="file://$MODULE_DIR$/youtrack/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -169,6 +174,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="KotlinRuntime" level="project" />
   </component>
 </module>
 
