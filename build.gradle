@@ -93,9 +93,6 @@ allprojects {
         testCompile "junit:junit:$junitVersion"
     }
 
-    // "gradle clean" deletes IDEA 'out' folder.
-    clean { delete( 'out' ) }
-
 
     task sourcesJar( type: Jar, dependsOn: classes ) {
         classifier = 'sources'
