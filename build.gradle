@@ -23,6 +23,7 @@ allprojects {
 
     apply plugin: 'kotlin'
     apply plugin: 'maven'
+    // http://evgeny-goldin.com/wiki/Gradle-plugins
     apply plugin: 'about'
     apply plugin: 'duplicates'
 
@@ -40,7 +41,11 @@ allprojects {
                    verbose          = true }
 
     dependencies {
-        compile 'org.jetbrains.kotlin:kotlin-stdlib:0.1-SNAPSHOT'
+        compile 'org.jetbrains.kotlin:kotlin-stdlib:0.1-SNAPSHOT',
+                // http://code.google.com/p/guava-libraries/
+                'com.google.guava:guava:13.0-rc1',
+                // http://code.google.com/p/google-http-java-client/
+                'com.google.http-client:google-http-client:1.10.3-beta'
         runtime 'org.jetbrains.kotlin:kotlin-runtime:0.1-SNAPSHOT'
     }
 
