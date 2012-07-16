@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
-  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions>
@@ -51,7 +48,11 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/artifactory/artifactory.iml" filepath="$PROJECT_DIR$/artifactory/artifactory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest-clients.iml" filepath="$PROJECT_DIR$/rest-clients.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teamcity/teamcity.iml" filepath="$PROJECT_DIR$/teamcity/teamcity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/youtrack/youtrack.iml" filepath="$PROJECT_DIR$/youtrack/youtrack.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
