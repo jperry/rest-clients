@@ -1,6 +1,3 @@
-include ':common'
-include ':youtrack'
-include ':teamcity'
-include ':artifactory'
+include 'common', 'youtrack', 'teamcity', 'artifactory'
 
 

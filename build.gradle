@@ -1,4 +1,6 @@
-apply plugin: 'idea'
+
+apply from: 'file:idea.gradle'
+
 
 final kotlinVersion     = '0.1-SNAPSHOT' // http://repository.jetbrains.com/kotlin/org/jetbrains/kotlin/
 final guavaVersion      = '13.0-rc1'     // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.guava%22%20AND%20a%3A%22guava%22
@@ -12,55 +14,6 @@ buildscript {
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
     dependencies { classpath "com.github.goldin.plugins:gradle:0.1.4-SNAPSHOT" }
-}
-
-idea.project {
-    jdkName = '1.6'
-    ipr.withXml {
-        provider ->
-        provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
-    }
-}
-
-idea.module {
-    downloadSources = true
-    downloadJavadoc = true
-
-    /**
-     * Updating IDEA *.iml file.
-     *
-     * http://gradle.org/docs/current/userguide/idea_plugin.html
-     * http://groovy.codehaus.org/api/groovy/util/NodeList.html
-     * http://groovy.codehaus.org/api/groovy/util/Node.html
-     */
-
-    iml.withXml {
-        provider ->
-
-        final appendFolder = {
-            Node node, String moduleName, String folderName ->
-
-            node.appendNode( 'sourceFolder', [ url          : "file://\$MODULE_DIR\$/$moduleName/src/main/$folderName",
-                                               isTestSource : 'false' ])
-            node.appendNode( 'sourceFolder', [ url          : "file://\$MODULE_DIR\$/$moduleName/src/test/$folderName",
-                                               isTestSource : 'true' ])
-        }
-
-        provider.node.component.content.first().with {
-
-            appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/gradle' ])
-            appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/out'    ])
-
-            for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
-            {
-                for ( folderName in [ 'java', 'kotlin', 'resources' ]) {
-                    appendFolder(( Node ) delegate, moduleName, folderName )
-                }
-
-                appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
-            }
-        }
-    }
 }
 
 
@@ -93,7 +46,6 @@ allprojects {
         testCompile "junit:junit:$junitVersion"
     }
 
-
     task sourcesJar( type: Jar, dependsOn: classes ) {
         classifier = 'sources'
         from sourceSets.main.allSource
@@ -109,6 +61,15 @@ allprojects {
     //     archives kdocJar
     }
 }
+
+
+/*
+subprojects.findAll{ it.name != 'common' }.each {
+    dependencies {
+        compile project( ':common' )
+    }
+}
+*/
 
 
 task wrapper( type: Wrapper ) { gradleVersion = '1.0' }
