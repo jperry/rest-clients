@@ -36,6 +36,16 @@ idea.module {
 
     iml.withXml {
         provider ->
+
+        final appendFolder = {
+            Node node, String moduleName, String folderName ->
+
+            node.appendNode( 'sourceFolder', [ url          : "file://\$MODULE_DIR\$/$moduleName/src/main/$folderName",
+                                               isTestSource : 'false' ])
+            node.appendNode( 'sourceFolder', [ url          : "file://\$MODULE_DIR\$/$moduleName/src/test/$folderName",
+                                               isTestSource : 'true' ])
+        }
+
         provider.node.component.content.first().with {
 
             appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/gradle' ])
@@ -43,9 +53,10 @@ idea.module {
 
             for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
             {
-                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/main/kotlin', isTestSource : 'false' ])
-                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/java',   isTestSource : 'true'  ])
-                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true'  ])
+                for ( folderName in [ 'java', 'kotlin', 'resources' ]) {
+                    appendFolder(( Node ) delegate, moduleName, folderName )
+                }
+
                 appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
             }
         }

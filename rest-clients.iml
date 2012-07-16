@@ -3,18 +3,30 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/kotlin" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/common/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/common/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/common/src/test/kotlin" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/kotlin" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/kotlin" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/artifactory/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
