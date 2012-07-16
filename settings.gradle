@@ -1,2 +1,6 @@
-rootProject.name = 'rest-clients'
+include ':common'
+include ':youtrack'
+include ':teamcity'
+include ':artifactory'
+
 

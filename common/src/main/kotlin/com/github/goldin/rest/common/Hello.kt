@@ -1,4 +1,4 @@
-package hello
+package com.github.goldin.rest.common
 
 fun main(args : Array<String>)
 {
