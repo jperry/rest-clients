@@ -27,17 +27,18 @@ idea.module {
 
     iml.withXml {
         provider ->
-        final content = provider.node.component.content.first()
+        provider.node.component.content.first().with {
 
-        for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
-        {
-            content.appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/main/kotlin', isTestSource : 'false' ])
-            content.appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true' ])
-            content.appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
+            appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/gradle' ])
+            appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/out'    ])
+
+            for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
+            {
+                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/main/kotlin', isTestSource : 'false' ])
+                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true' ])
+                appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
+            }
         }
-
-        content.appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/gradle' ])
-        content.appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/out'    ])
     }
 }
 
