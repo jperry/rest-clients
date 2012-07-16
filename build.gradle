@@ -16,6 +16,29 @@ idea.project {
 idea.module {
     downloadSources = true
     downloadJavadoc = true
+
+    /**
+     * Updating IDEA *.iml file.
+     *
+     * http://gradle.org/docs/current/userguide/idea_plugin.html
+     * http://groovy.codehaus.org/api/groovy/util/NodeList.html
+     * http://groovy.codehaus.org/api/groovy/util/Node.html
+     */
+
+    iml.withXml {
+        provider ->
+        final content = provider.node.component.content.first()
+
+        for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
+        {
+            content.appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/main/kotlin', isTestSource : 'false' ])
+            content.appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true' ])
+            content.appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
+        }
+
+        content.appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/gradle' ])
+        content.appendNode( 'excludeFolder',     [ url : 'file://$MODULE_DIR$/out'    ])
+    }
 }
 
 
@@ -48,6 +71,9 @@ allprojects {
                 'com.google.http-client:google-http-client:1.10.3-beta'
         runtime 'org.jetbrains.kotlin:kotlin-runtime:0.1-SNAPSHOT'
     }
+
+    // "gradle clean" deletes IDEA 'out' folder.
+    clean { delete( 'out' ) }
 
     task sourcesJar( type: Jar, dependsOn: classes ) {
         classifier = 'sources'
