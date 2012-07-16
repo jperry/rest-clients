@@ -7,6 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/common/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/kotlin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/kotlin" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/kotlin" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/kotlin" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/kotlin" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/artifactory/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
