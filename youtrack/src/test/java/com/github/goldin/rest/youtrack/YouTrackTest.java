@@ -4,22 +4,20 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.*;
 
-
 /**
  * {@link YouTrack} test.
  */
 public class YouTrackTest
 {
-    private final YouTrack yt = new YouTrack( "http://evgenyg.myjetbrains.com/youtrack/" );
+    private final YouTrack yt = new YouTrack( "http://evgenyg.myjetbrains.com/youtrack" );
 
 
     @Test
     public void testIssueExists()
     {
-        assertTrue( true );
-//        assertTrue ( yt.issueExists( "pl-633"  ));
-//        assertTrue ( yt.issueExists( "pl-121"  ));
-//        assertFalse( yt.issueExists( "pl-6331" ));
-//        assertFalse( yt.issueExists( "pl-1211" ));
+        assertTrue ( yt.issueExists( "pl-633"  ));
+        assertTrue ( yt.issueExists( "pl-121"  ));
+        assertFalse( yt.issueExists( "pl-6331" ));
+        assertFalse( yt.issueExists( "pl-1211" ));
     }
 }
