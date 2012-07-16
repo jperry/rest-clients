@@ -1,5 +1,11 @@
 apply plugin: 'idea'
 
+final kotlinVersion     = '0.1-SNAPSHOT' // http://repository.jetbrains.com/kotlin/org/jetbrains/kotlin/
+final guavaVersion      = '13.0-rc1'     // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.guava%22%20AND%20a%3A%22guava%22
+final googleHttpVersion = '1.10.3-beta'  // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.http-client%22%20AND%20a%3A%22google-http-client%22
+final junitVersion      = '4.10'         // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22junit%22%20AND%20a%3A%22junit%22
+
+
 buildscript {
     repositories {
 //        maven   { url "${ System.properties[ 'user.home' ] }/.m2/repository" }
@@ -10,7 +16,10 @@ buildscript {
 
 idea.project {
     jdkName = '1.6'
-    ipr.withXml { provider -> provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git' }
+    ipr.withXml {
+        provider ->
+        provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+    }
 }
 
 idea.module {
@@ -35,7 +44,8 @@ idea.module {
             for ( moduleName in [ 'artifactory', 'common', 'teamcity', 'youtrack' ])
             {
                 appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/main/kotlin', isTestSource : 'false' ])
-                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true' ])
+                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/java',   isTestSource : 'true'  ])
+                appendNode( 'sourceFolder',  [ url : 'file://$MODULE_DIR$/' + moduleName + '/src/test/kotlin', isTestSource : 'true'  ])
                 appendNode( 'excludeFolder', [ url : 'file://$MODULE_DIR$/' + moduleName + '/build' ])
             }
         }
@@ -45,11 +55,11 @@ idea.module {
 
 allprojects {
 
-    apply plugin: 'kotlin'
+    apply plugin: 'java'
+    apply plugin: 'kotlin'        // https://github.com/evgeny-goldin/gradle-plugins
     apply plugin: 'maven'
-    // http://evgeny-goldin.com/wiki/Gradle-plugins
-    apply plugin: 'about'
-    apply plugin: 'duplicates'
+    apply plugin: 'about'         // http://evgeny-goldin.com/wiki/Gradle-about-plugin
+    apply plugin: 'duplicates'    // http://evgeny-goldin.com/wiki/Gradle-duplicates-plugin
 
     defaultTasks 'clean', 'build', 'about', 'install'
 
@@ -65,16 +75,16 @@ allprojects {
                    verbose          = true }
 
     dependencies {
-        compile 'org.jetbrains.kotlin:kotlin-stdlib:0.1-SNAPSHOT',
-                // http://code.google.com/p/guava-libraries/
-                'com.google.guava:guava:13.0-rc1',
-                // http://code.google.com/p/google-http-java-client/
-                'com.google.http-client:google-http-client:1.10.3-beta'
-        runtime 'org.jetbrains.kotlin:kotlin-runtime:0.1-SNAPSHOT'
+        compile     "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+                    "com.google.guava:guava:$guavaVersion",                        // https://code.google.com/p/guava-libraries/
+                    "com.google.http-client:google-http-client:$googleHttpVersion" // http://code.google.com/p/google-http-java-client/
+        runtime     "org.jetbrains.kotlin:kotlin-runtime:$kotlinVersion"
+        testCompile "junit:junit:$junitVersion"
     }
 
     // "gradle clean" deletes IDEA 'out' folder.
     clean { delete( 'out' ) }
+
 
     task sourcesJar( type: Jar, dependsOn: classes ) {
         classifier = 'sources'

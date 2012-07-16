@@ -4,12 +4,16 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/artifactory/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/artifactory/src/test/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/common/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/common/src/test/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/teamcity/src/test/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/youtrack/src/test/kotlin" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/artifactory/build" />
@@ -176,6 +180,30 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/com.google.protobuf/protobuf-java/2.2.0/source/56faad6f077be8a56ee40a73b020845d018c969a/protobuf-java-2.2.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/jar/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/javadoc/8271524e260a074563bb1dca45c8769d103665c7/junit-4.10-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/junit/junit/4.10/source/6c98d6766e72d5575f96c9479d1c1d3b865c6e25/junit-4.10-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/artifacts-13/filestore/org.hamcrest/hamcrest-core/1.1/source/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
