@@ -10,7 +10,6 @@ import static junit.framework.TestCase.*;
  */
 public class YouTrackTest
 {
-
     private final YouTrack yt = new YouTrack( "http://evgenyg.myjetbrains.com/youtrack/" );
 
 
