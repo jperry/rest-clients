@@ -5,11 +5,7 @@ idea {
 
     project {
         jdkName = '1.6'
-        modules = subprojects*.idea.module
-        ipr.withXml {
-            provider ->
-            provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
-        }
+        ipr.withXml { provider -> provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git' }
     }
 
     module {
