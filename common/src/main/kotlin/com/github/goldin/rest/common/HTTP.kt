@@ -19,12 +19,12 @@ class HTTP
 
     fun getResponse( url : String ): HttpResponse
     {
-        log.info( "Http request: [${ url }]" )
+        log.info( "GET: [${ url }]" )
         val t        = System.currentTimeMillis()
         val request  = factory.buildGetRequest( GenericUrl( url ))!!
         val response = request.setThrowExceptionOnExecuteError( false )!!.execute()!!
 
-        log.info( "Http request: [${ url }] - [${ response.getStatusCode()}] (${ System.currentTimeMillis() - t } ms)" )
+        log.info( "GET: [${ url }] - [${ response.getStatusCode()}] (${ System.currentTimeMillis() - t } ms)" )
         return response
     }
 
