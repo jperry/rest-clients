@@ -20,8 +20,7 @@ public class HttpTest
     @Test
     public void testHttpHead() throws IOException
     {
-        assertTrue( http.headRequest( "http://ya.ru"                                       ).parseAsString().isEmpty());
-        assertTrue( http.headRequest( "http://www.this-page-intentionally-left-blank.org/" ).parseAsString().isEmpty());
+        assertTrue( http.headRequest( "http://ya.ru" ).parseAsString().isEmpty());
     }
 
 
