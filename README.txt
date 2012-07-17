@@ -11,4 +11,4 @@
 
 * Run "gradlew" to build and test the project.
 
-* TeamCity build: http://evgeny-goldin.org/teamcity/project.html?projectId=project19&tab=projectOverview&guest=1
+* TeamCity build: http://goo.gl/5NHrV
