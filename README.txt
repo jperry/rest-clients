@@ -7,7 +7,8 @@
 * Use Kotlin plugin: http://goo.gl/GxeCY (last successful build)
                      http://goo.gl/SQPwV (v0.1.2858 built on July 16)
 
-* Run "gradlew cleanIdea idea" to re-generate IDEA files
+* Run "gradlew idea" to generate IDEA files.
 
-* Run "gradlew" to build the project
+* Run "gradlew" to build and test the project.
 
+* TeamCity build: http://evgeny-goldin.org/teamcity/project.html?projectId=project19&tab=projectOverview&guest=1
