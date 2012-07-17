@@ -20,4 +20,12 @@ public class YouTrackTest
         assertFalse( yt.issueExists( "pl-6331" ));
         assertFalse( yt.issueExists( "pl-1211" ));
     }
+
+
+    @Test
+    public void testIssue()
+    {
+        final Issue issue = yt.issue( "pl-101" );
+        assertEquals( "pl-101", issue.getId());
+    }
 }

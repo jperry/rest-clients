@@ -5,6 +5,11 @@ import java.util.logging.Logger
 import kotlin.test.assertFalse
 import java.util.List
 import java.util.Collections
+import java.io.InputStreamReader
+import java.util.Map
+import com.google.api.client.json.GenericJson
+import com.google.api.client.json.jackson.JacksonFactory
+import com.google.api.client.json.JsonObjectParser
 
 
 /**
@@ -12,9 +17,10 @@ import java.util.Collections
  * http://confluence.jetbrains.net/display/YTD4/General+REST+API
  * http://confluence.jetbrains.net/display/YTD4/YouTrack+REST+API+Reference
  */
-class YouTrack ( val url : String )
+class YouTrack ( url : String )
 {
-    private val http : HTTP = HTTP()
+    private val http       : HTTP       = HTTP()
+    private val urlBuilder : UrlBuilder = UrlBuilder( url )
 
     /**
      * Checks that an issue specified exists.
@@ -23,21 +29,27 @@ class YouTrack ( val url : String )
     fun issueExists( issueId: String ): Boolean
     {
         checkNotNull( issueId, "'issueId' is null" )
-        assertFalse ( url.endsWith( "/" ))
-
-        return http.statusCode( "${ url }/rest/issue/${ issueId }/exists" ) == 200
+        return http.statusCode( urlBuilder.issueExists( issueId )) == 200
     }
 
 
     /**
      * Retrieves issue specified.
      */
+    fun issue( issueId : String ): Issue = issue( issueId, arrayList())
+
+
+    /**
+     * Retrieves issue specified.
+     */
     fun issue( issueId : String,
-               fields  : List<String> = Collections.emptyList<String>()!! ): Issue
+               fields  : List<String>? = null ): Issue
     {
         checkNotNull( issueId, "'issueId' is null" )
-        assertFalse ( url.endsWith( "/" ))
 
-        return Issue()
+        val json  = http.responseAsJson( urlBuilder.issue( issueId ))
+        val issue = Issue()
+        issue.id  = json.get( "id" ).toString()
+        return issue
     }
 }
