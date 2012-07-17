@@ -1,7 +1,7 @@
 apply plugin: 'idea'
 
 
-final kotlinVersion     = '0.1-SNAPSHOT' // http://repository.jetbrains.com/kotlin/org/jetbrains/kotlin/
+final kotlinVersion     = '0.1-SNAPSHOT' // http://repository.jetbrains.com/kotlin/org/jetbrains/kotlin/kotlin-runtime/
 final guavaVersion      = '13.0-rc1'     // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.guava%22%20AND%20a%3A%22guava%22
 final googleHttpVersion = '1.10.3-beta'  // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.http-client%22%20AND%20a%3A%22google-http-client%22
 final slf4jVersion      = '1.6.6'        // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.slf4j%22%20AND%20a%3A%22slf4j-api%22
@@ -9,12 +9,18 @@ final logbackVersion    = '1.0.6'        // http://search.maven.org/#search%7Cga
 final junitVersion      = '4.10'         // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22junit%22%20AND%20a%3A%22junit%22
 
 
+defaultTasks 'clean', 'build', 'about', 'install'
+
+
 buildscript {
     repositories {
 //        maven   { url "${ System.properties[ 'user.home' ] }/.m2/repository" }
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
-    dependencies { classpath "com.github.goldin.plugins:gradle:0.1.4-SNAPSHOT" }
+    dependencies {
+        classpath 'com.github.goldin.plugins:gradle:0.1.4-SNAPSHOT',
+                  'com.github.goldin.plugins:kotlin:0.1.4-SNAPSHOT'
+    }
 }
 
 
@@ -34,7 +40,7 @@ idea.module {
 }
 
 
-allprojects {
+subprojects {
 
     apply plugin: 'idea'
     apply plugin: 'java'
@@ -43,7 +49,6 @@ allprojects {
     apply plugin: 'about'         // http://evgeny-goldin.com/wiki/Gradle-about-plugin
     apply plugin: 'duplicates'    // http://evgeny-goldin.com/wiki/Gradle-duplicates-plugin
 
-    defaultTasks 'clean', 'build', 'about', 'install'
 
     sourceCompatibility  = 1.6
     group                = 'com.github.goldin.rest'
