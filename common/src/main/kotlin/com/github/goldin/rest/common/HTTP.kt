@@ -17,28 +17,35 @@ class HTTP
     final val log     : Logger             = LoggerFactory.getLogger( "HTTP" )!!
 
 
-    fun getResponse( url : String ): HttpResponse
+    /**
+     * Invokes GET or HEAD request and return response.
+     */
+    private fun response( url : String, isGet : Boolean = true ): HttpResponse
     {
+        val title = if ( isGet ) "GET" else "HEAD"
+
         if ( log.isDebugEnabled())
         {
-            log.debug( "GET: [${ url }]" )
+            log.debug( "$title: [${ url }]" )
         }
 
         val t        = System.currentTimeMillis()
-        val request  = factory.buildGetRequest( GenericUrl( url ))!!
+        val request  = if ( isGet ) factory.buildGetRequest ( GenericUrl( url ))!!
+                       else         factory.buildHeadRequest( GenericUrl( url ))!!
+
         val response = request.setThrowExceptionOnExecuteError( false )!!.execute()!!
 
         if ( log.isDebugEnabled())
         {
-            log.debug( "GET: [${ url }] - [${ response.getStatusCode()}] (${ System.currentTimeMillis() - t } ms)" )
+            log.debug( "$title: [${ url }] - [${ response.getStatusCode()}] (${ System.currentTimeMillis() - t } ms)" )
         }
 
         return response
     }
 
 
-    fun getResponseAsString( url : String ): String
-    {
-        return getResponse( url ).parseAsString()!!
-    }
+    fun headRequest     ( url : String ): HttpResponse = response( url = url, isGet = false )
+    fun getRequest      ( url : String ): HttpResponse = response( url = url, isGet = true  )
+    fun statusCode      ( url : String ): Int          = headRequest( url ).getStatusCode()
+    fun responseAsString( url : String ): String       = getRequest ( url ).parseAsString()!!
 }
