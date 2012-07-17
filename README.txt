@@ -1,6 +1,8 @@
 
 * Java REST API for YouTrack, TeamCity, and Artifactory.
 
+* TeamCity build:    http://goo.gl/5NHrV
+
 * Use IDEA 11:       http://download.jetbrains.com/idea/ideaIU-11.1.2.exe (Ultimate Edition)
                      http://download.jetbrains.com/idea/ideaIC-11.1.2.exe (Community Edition)
 
@@ -10,5 +12,3 @@
 * Run "gradlew idea" to generate IDEA files.
 
 * Run "gradlew" to build and test the project.
-
-* TeamCity build: http://goo.gl/5NHrV
