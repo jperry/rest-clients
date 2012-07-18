@@ -24,12 +24,15 @@ import com.google.api.client.json.jackson.JacksonFactory
 
 class HTTP
 {
-    final val factory : HttpRequestFactory = NetHttpTransport().createRequestFactory()!!
-    final val log     : Logger             = LoggerFactory.getLogger( "HTTP" )!!
+    class object
+    {
+        private val factory : HttpRequestFactory = NetHttpTransport().createRequestFactory()!!
+        private val log     : Logger             = LoggerFactory.getLogger( javaClass<HTTP>())!!
+    }
 
 
     /**
-     * Invokes GET or HEAD request and return response.
+     * General request invoked - invokes an HTTP request and returns the corresponding response.
      */
     fun request( url     : String,
                  isHead  : Boolean              = false,
@@ -44,7 +47,7 @@ class HTTP
                     if ( isPost ) "POST" else
                                   null
 
-        assertFalse( title == null, "HTTP.request(): one of isHead/isGet/isPost needs to be specified" )
+        assertTrue( title != null, "HTTP.request(): one of isHead/isGet/isPost needs to be specified" )
 
         if ( log.isDebugEnabled())
         {
@@ -89,15 +92,42 @@ class HTTP
     }
 
 
-    fun headRequest     ( url     : String )     : HttpResponse = request( url = url, isHead = true )
-    fun getRequest      ( url     : String )     : HttpResponse = request( url = url, isGet  = true )
-    fun postRequest     ( url     : String,
-                          content : HttpContent ): HttpResponse = request( url = url, isPost = true, content = content )
-    fun statusCode      ( url     : String )     : Int          = headRequest( url ).getStatusCode()
-    fun responseAsString( url     : String )     : String       = getRequest ( url ).parseAsString()!!
-    fun responseAsJson  ( url     : String )     : GenericJson  = request( isGet   = true,
-                                                                           url     = url,
-                                                                           headers = hashMap( #( "Accept", "application/json" )),
-                                                                           parser  = JsonObjectParser( JacksonFactory())).
-                                                                  parseAs( javaClass<GenericJson>())!!
+    /**
+     * Sends a HEAD request and returns a corresponding [[HttpResponse]].
+     */
+    fun headRequest ( url : String ) : HttpResponse = request( url = url, isHead = true )
+
+    /**
+     * Sends a GET request and returns a corresponding [[HttpResponse]].
+     */
+    fun getRequest ( url : String ) : HttpResponse = request( url = url, isGet  = true )
+
+    /**
+     * Sends a POST request and returns a corresponding [[HttpResponse]].
+     */
+    fun postRequest ( url     : String,
+                      content : HttpContent ): HttpResponse = request( url = url, isPost = true, content = content )
+    /**
+     * Retrieves a status code of sending a HEAD request.
+     */
+    fun statusCode ( url : String ) : Int = headRequest( url ).getStatusCode()
+
+    /**
+     * Retrieves [[String]] response of sending a GET request.
+     */
+    fun responseAsString ( url : String ) : String = getRequest ( url ).parseAsString()!!
+
+    /**
+     * Retrieves [[GenericJson]] response of sending a GET request.
+     */
+    fun responseAsJson ( url : String ) : GenericJson = responseAsJson( url, javaClass<GenericJson>())
+
+    /**
+     * Retrieves [[T]] response of sending a GET request.
+     */
+    fun responseAsJson<T> ( url : String, rtype : Class<T> ) : T = request( isGet   = true,
+                                                                            url     = url,
+                                                                            headers = hashMap( #( "Accept", "application/json" )),
+                                                                            parser  = JsonObjectParser( JacksonFactory())).
+                                                                   parseAs( rtype )!!
 }

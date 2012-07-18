@@ -12,9 +12,26 @@ class UrlBuilder( url : String )
     private val url : String = if ( url.endsWith( "/" )) url.substring( 0, url.length() - 1 )
                                else                      url
     {
-        assertFalse( url.trim().isEmpty() || url.endsWith( "/" ))
+        assertFalse( this.url.trim().isEmpty() || this.url.endsWith( "/" ))
     }
 
-    fun issue      ( issueId : String ) = "$url/rest/issue/$issueId"
-    fun issueExists( issueId : String ) = "${ issue( issueId ) }/exists"
+
+    /**
+     * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
+     */
+    fun issue ( issueId : String ): String
+    {
+        checkNotNull( issueId, "'issueId' can't be null" )
+        return "$url/rest/issue/$issueId"
+    }
+
+
+    /**
+     * http://confluence.jetbrains.net/display/YTD4/Check+that+an+Issue+Exists
+     */
+    fun issueExists( issueId : String ): String
+    {
+        checkNotNull( issueId, "'issueId' can't be null" )
+        return "${ issue( issueId ) }/exists"
+    }
 }

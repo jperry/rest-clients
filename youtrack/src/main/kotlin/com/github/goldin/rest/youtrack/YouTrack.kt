@@ -19,18 +19,18 @@ import com.google.api.client.json.JsonObjectParser
  */
 class YouTrack ( url : String )
 {
-    private val http       : HTTP       = HTTP()
+    class object
+    {
+        private val http : HTTP = HTTP()
+    }
+
     private val urlBuilder : UrlBuilder = UrlBuilder( url )
 
     /**
      * Checks that an issue specified exists.
      * http://confluence.jetbrains.net/display/YTD4/Check+that+an+Issue+Exists
      */
-    fun issueExists( issueId: String ): Boolean
-    {
-        checkNotNull( issueId, "'issueId' is null" )
-        return http.statusCode( urlBuilder.issueExists( issueId )) == 200
-    }
+    fun issueExists( issueId: String ): Boolean = http.statusCode( urlBuilder.issueExists( issueId )) == 200
 
 
     /**
@@ -41,15 +41,13 @@ class YouTrack ( url : String )
 
     /**
      * Retrieves issue specified.
+     * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
     fun issue( issueId : String,
                fields  : List<String>? = null ): Issue
     {
-        checkNotNull( issueId, "'issueId' is null" )
-
-        val json  = http.responseAsJson( urlBuilder.issue( issueId ))
-        val issue = Issue()
-        issue.id  = json.get( "id" ).toString()
-        return issue
+        // TODO: support "with" argument using fields specified
+        return http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
+               update()
     }
 }
