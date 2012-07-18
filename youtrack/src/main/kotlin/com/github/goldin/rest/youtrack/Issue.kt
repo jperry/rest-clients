@@ -7,6 +7,7 @@ import java.util.Date
 import java.util.List
 import java.util.Map
 import kotlin.test.assertNotNull
+import com.github.goldin.rest.common.verifyNotNull
 
 
 /**
@@ -48,9 +49,10 @@ class Issue
      */
     fun update(): Issue
     {
-        assertNotNull( tag,     "Updating issue - 'tag' is null" )
-        assertNotNull( field,   "Updating issue - 'field' is null" )
-        assertNotNull( comment, "Updating issue - 'comment' is null" )
+        /**
+         * Properties that are already set by Json parser.
+         */
+        verifyNotNull( id, tag, field, comment )
 
         /**
          * Adding all tags from array of maps (every map has a single "value" entry).

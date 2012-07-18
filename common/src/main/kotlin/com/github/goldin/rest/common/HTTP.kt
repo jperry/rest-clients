@@ -67,8 +67,8 @@ class HTTP
 
         if ( isPost )
         {
-            assertNotNull( content, "Content needs to be specified for POST request" )
-            request.setContent( content!! )
+
+            request.setContent( assertNotNull( content, "Content needs to be specified for POST request" ))
         }
 
         if ( parser != null )

@@ -53,10 +53,9 @@ class Reflection
                                                         if ( fieldType.equals( javaClass<Date>   ())) Date( Long.valueOf( fieldValueS )!!.toLong()) else
                                                         null
 
-                    assertNotNull( convertedFieldValue,
-                                   "Unknown type [$fieldType] of field [$fieldName] for instance of class [${ o.javaClass.getName() }]" )
-
-                    field.set( o, convertedFieldValue )
+                    field.set( o, assertNotNull( convertedFieldValue,
+                                                 "Unknown type [$fieldType] of field [$fieldName] for " +
+                                                 "instance of class [${ o.javaClass.getName() }]" ))
                 }
             }
             catch( t: Throwable )
@@ -69,3 +68,9 @@ class Reflection
         return unrecognizedFields
     }
 }
+
+
+/**
+ * Verifies none of objects specified is null.
+ */
+public inline fun verifyNotNull( vararg objects: Any? ): Unit = for ( o in objects ){ assertNotNull( o ) }
