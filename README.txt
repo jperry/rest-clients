@@ -3,6 +3,8 @@
 
 * TeamCity build:    http://goo.gl/5NHrV
 
+* Issue tracker:     http://evgeny-goldin.org/youtrack/issues/rest
+
 * Use IDEA 11:       http://download.jetbrains.com/idea/ideaIU-11.1.2.exe (Ultimate)
                      http://download.jetbrains.com/idea/ideaIC-11.1.2.exe (Community)
 
