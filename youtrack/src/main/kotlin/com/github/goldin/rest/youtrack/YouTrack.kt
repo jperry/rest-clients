@@ -1,15 +1,7 @@
 package com.github.goldin.rest.youtrack
 
 import com.github.goldin.rest.common.HTTP
-import java.util.logging.Logger
-import kotlin.test.assertFalse
 import java.util.List
-import java.util.Collections
-import java.io.InputStreamReader
-import java.util.Map
-import com.google.api.client.json.GenericJson
-import com.google.api.client.json.jackson.JacksonFactory
-import com.google.api.client.json.JsonObjectParser
 
 
 /**
@@ -35,6 +27,7 @@ class YouTrack ( url : String )
 
     /**
      * Retrieves issue specified.
+     * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
     fun issue( issueId : String ): Issue = issue( issueId, arrayList())
 
@@ -44,10 +37,6 @@ class YouTrack ( url : String )
      * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
     fun issue( issueId : String,
-               fields  : List<String>? = null ): Issue
-    {
-        // TODO: support "with" argument using fields specified
-        return http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
-               update()
-    }
+               fields  : List<String> = arrayList()): Issue = http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
+                                                              update()
 }

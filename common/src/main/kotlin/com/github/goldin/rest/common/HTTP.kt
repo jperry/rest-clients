@@ -1,25 +1,20 @@
 package com.github.goldin.rest.common
 
-import com.google.api.client.http.HttpResponse
-import com.google.api.client.http.javanet.NetHttpTransport
-import com.google.api.client.http.HttpRequest
 import com.google.api.client.http.GenericUrl
-import com.google.api.client.http.HttpRequestFactory
-import com.google.api.client.http.HttpResponseException
-import com.google.api.client.http.LowLevelHttpResponse
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import java.util.Map
-import java.util.Collections
 import com.google.api.client.http.HttpContent
 import com.google.api.client.http.HttpHeaders
-import kotlin.nullable.all
-import kotlin.test.assertFalse
-import com.google.api.client.util.ObjectParser
-import kotlin.test.assertTrue
+import com.google.api.client.http.HttpRequestFactory
+import com.google.api.client.http.HttpResponse
+import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.GenericJson
 import com.google.api.client.json.JsonObjectParser
 import com.google.api.client.json.jackson.JacksonFactory
+import com.google.api.client.util.ObjectParser
+import java.util.Map
+import kotlin.test.assertTrue
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import kotlin.test.assertNotNull
 
 
 class HTTP
@@ -72,7 +67,7 @@ class HTTP
 
         if ( isPost )
         {
-            assertTrue( content != null, "Content needs to be specified for POST request" )
+            assertNotNull( content, "Content needs to be specified for POST request" )
             request.setContent( content!! )
         }
 

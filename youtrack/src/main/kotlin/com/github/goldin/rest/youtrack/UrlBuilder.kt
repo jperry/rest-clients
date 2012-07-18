@@ -1,7 +1,6 @@
 package com.github.goldin.rest.youtrack
 
 import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 
 /**
