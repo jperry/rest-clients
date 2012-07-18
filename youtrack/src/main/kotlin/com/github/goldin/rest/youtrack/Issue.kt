@@ -57,8 +57,7 @@ class Issue
         /**
          * Adding all tags from array of maps (every map has a single "value" entry).
          */
-        tags = arrayList()
-        tags!!.addAll( tag.map{ it.get( "value" )!! })
+        tags = tag.map{ it.get( "value" )!! }
 
         /**
          * Converting array of maps (every map has two entries: field's "name" and "value") to map of fields: name => value.
