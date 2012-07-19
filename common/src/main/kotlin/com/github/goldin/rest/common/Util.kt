@@ -6,6 +6,7 @@ import java.util.List
 import java.util.Map
 import kotlin.test.assertNotNull
 import java.util.Collection
+import kotlin.nullable.toList
 
 
 /**
@@ -26,8 +27,8 @@ public fun updateObject( o : Any, map: Map<String, Any> ): Map<String, Any>
    /**
     * Mapping of object fields: field name => field instance
     */
-    val objectFields = convertToMap<Field, String, Field>( o.javaClass.getFields()!!.filter{ it != null } ){
-        ( field : Field ) -> #( field.getName(), field )
+    val objectFields = convertToMap<Field, String, Field>( o.javaClass.getFields()!! ){
+        field -> #( field.getName()!!, field )
     }
 
     for ( e in map )
@@ -80,14 +81,20 @@ public inline fun verifyNotNull( vararg objects: Any? ): Unit = for ( o in objec
 
 
 
-
-public inline fun <T, K, V> convertToMap( array: Array<T>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
+/**
+ * Converts array to Map by passing each element to an operation and inserting a tuple returned (key, value) into a Map.
+ * Types:
+ * T? - type of array elements, some elements can be null
+ * K  - type of tuple's first element returned by an operation and used as map's key
+ * V  - type of tuple's second element returned by an operation and used as map's value
+ */
+public inline fun <T, K, V> convertToMap( array: Array<T?>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
 {
     val map : Map<K, V> = hashMap()
 
-    for ( o in array )
+    for ( o in array.filter{ it != null })
     {
-        val tuple = operation( o )
+        val tuple = operation( o!! )
         map.put( tuple._1, tuple._2 )
     }
 
@@ -95,11 +102,18 @@ public inline fun <T, K, V> convertToMap( array: Array<T>, operation: ( T ) -> T
 }
 
 
-public inline fun <T, K, V> convertToMap( collection: Collection<T>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
+/**
+ * Converts collection to Map by passing each element to an operation and inserting a tuple returned (key, value) into a Map.
+ * Types:
+ * T? - type of collection elements, some elements can be null
+ * K  - type of tuple's first element returned by an operation and used as map's key
+ * V  - type of tuple's second element returned by an operation and used as map's value
+ */
+public inline fun <T, K, V> convertToMap( collection: Collection<T?>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
 {
     val map : Map<K, V> = hashMap()
 
-    for ( o in collection )
+    for ( o in collection.filter{ it != null })
     {
         val tuple = operation( o!! )
         map.put( tuple._1, tuple._2 )

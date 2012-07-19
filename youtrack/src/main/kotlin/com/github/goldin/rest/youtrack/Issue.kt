@@ -18,12 +18,12 @@ import com.github.goldin.rest.common.convertToMap
  */
 class Issue
 {
-    [Key] public var id               : String?           = null
-    [Key] public var jiraId           : Any?              = null
+    [Key] public var id               : String           = ""
+    [Key] public var jiraId           : Any              = Object()
 
-    [Key] private var tag             : Array<ArrayMap<String, String>>? = null
-    [Key] private var field           : Array<ArrayMap<String, Any>>?    = null
-    [Key] private var comment         : Array<ArrayMap<String, String>>? = null
+    [Key] private var tag             : Array<ArrayMap<String, String>> = array()
+    [Key] private var field           : Array<ArrayMap<String, Any>?>   = array()
+    [Key] private var comment         : Array<ArrayMap<String, String>> = array()
 
           public var tags             : List<String>?     = null
           public var projectShortName : String?           = null
@@ -57,17 +57,14 @@ class Issue
         /**
          * Reading tags from array of maps (every map has a single "value" entry).
          */
-        tags = tag!!.map{ it.get( "value" )!! }
+        tags = tag.map{ it.get( "value" )!! }
 
         /**
          * Converting array of maps (every map has two entries: field's "name" and "value") to map of fields: name => value.
          */
-        val fieldsMap = convertToMap<ArrayMap<String, Any>, String, Any>( field!! ) {
-            arrayMap -> #( arrayMap.get( "name"  )!! as String, arrayMap.get( "value" )!! )
+        val fieldsMap = convertToMap<ArrayMap<String, Any>, String, Any>( field ) {
+            map -> #( map.get( "name"  )!! as String, map.get( "value" )!! )
         }
-
-        hashMap<String, Any>()
-        field!!.forEach{ fieldsMap.put( it.get( "name"  )!! as String, it.get( "value" )!! )}
 
         /**
          * Updating object fields and getting back a map of unrecognized fields.
