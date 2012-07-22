@@ -54,9 +54,9 @@ public fun updateObject( o : Any, map: Map<String, Any> ): Map<String, Any>
             {
                 val fieldType                  = field.getType()
                 val fieldValueConverted : Any? =
-                    if ( fieldType.equals( javaClass<String> ())) fieldValue else
-                    if ( fieldType.equals( javaClass<Integer>())) Integer.valueOf( fieldValueS )!! else
-                    if ( fieldType.equals( javaClass<Date>   ())) Date( Long.valueOf( fieldValueS )!!.toLong()) else
+                    if ( fieldType == javaClass<String> ()) fieldValue else
+                    if ( fieldType == javaClass<Integer>()) Integer.valueOf( fieldValueS )!! else
+                    if ( fieldType == javaClass<Date>   ()) Date( Long.valueOf( fieldValueS )!!.toLong()) else
                     null
 
                 field.set( o, assertNotNull( fieldValueConverted,

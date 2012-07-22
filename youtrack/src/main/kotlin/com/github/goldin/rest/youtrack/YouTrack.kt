@@ -2,6 +2,7 @@ package com.github.goldin.rest.youtrack
 
 import com.github.goldin.rest.common.HTTP
 import java.util.List
+import kotlin.test.assertTrue
 
 
 /**
@@ -37,6 +38,11 @@ class YouTrack ( url : String )
      * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
     fun issue( issueId : String,
-               fields  : List<String> = arrayList()): Issue = http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
-                                                              update()
+               fields  : List<String> = arrayList()): Issue
+    {
+        if ( ! issueExists( issueId )){ throw IssueNotFoundException( issueId ) }
+
+        return http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
+               update( issueId )
+    }
 }

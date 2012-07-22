@@ -8,8 +8,8 @@
 * Use IDEA 11:       http://download.jetbrains.com/idea/ideaIU-11.1.2.exe (Ultimate)
                      http://download.jetbrains.com/idea/ideaIC-11.1.2.exe (Community)
 
-* Use Kotlin plugin: http://goo.gl/GxeCY (last successful build)
-                     http://goo.gl/SQPwV (v0.1.2858 built on July 16)
+* Use Kotlin:        http://goo.gl/GxeCY (last successful build)
+                     http://goo.gl/6FD6T (last milestone)
 
 * Run "gradlew idea" to generate IDEA files.
 

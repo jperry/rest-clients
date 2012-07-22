@@ -9,6 +9,7 @@ import kotlin.test.assertNotNull
 import com.github.goldin.rest.common.verifyNotNull
 import com.github.goldin.rest.common.updateObject
 import com.github.goldin.rest.common.convertToMap
+import kotlin.test.assertTrue
 
 
 /**
@@ -18,12 +19,12 @@ import com.github.goldin.rest.common.convertToMap
  */
 class Issue
 {
-    [Key] public var id               : String           = ""
-    [Key] public var jiraId           : Any              = Object()
+    [Key] public var id               : String?           = null
+    [Key] public var jiraId           : Any?              = null
 
-    [Key] private var tag             : Array<ArrayMap<String, String>> = array()
-    [Key] private var field           : Array<ArrayMap<String, Any>?>   = array()
-    [Key] private var comment         : Array<ArrayMap<String, String>> = array()
+    [Key] private var tag             : Array<ArrayMap<String, String>>? = null
+    [Key] private var field           : Array<ArrayMap<String, Any>?>?   = null
+    [Key] private var comment         : Array<ArrayMap<String, String>>? = null
 
           public var tags             : List<String>?     = null
           public var projectShortName : String?           = null
@@ -47,22 +48,20 @@ class Issue
     /**
      * Updates an instance by converting Json-based issue representation to bean properties.
      */
-    fun update(): Issue
+    fun update( issueIdExpected: String ): Issue
     {
-        /**
-         * Properties that should be already set by Json parser.
-         */
-        verifyNotNull( id, tag, field, comment )
+        if ( arrayList( id, tag, field, comment ).any{ it == null }){ throw IssueNotFoundException( issueIdExpected ) }
+        assertTrue( id == issueIdExpected, "Issue id read \"$id\" != issue id expected \"$issueIdExpected\"" )
 
         /**
          * Reading tags from array of maps (every map has a single "value" entry).
          */
-        tags = tag.map{ it.get( "value" )!! }
+        tags = tag!!.map{ it.get( "value" )!! }
 
         /**
          * Converting array of maps (every map has two entries: field's "name" and "value") to map of fields: name => value.
          */
-        val fieldsMap = convertToMap<ArrayMap<String, Any>, String, Any>( field ) {
+        val fieldsMap = convertToMap<ArrayMap<String, Any>, String, Any>( field!! ) {
             map -> #( map.get( "name"  )!! as String, map.get( "value" )!! )
         }
 
