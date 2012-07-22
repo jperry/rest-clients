@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class YouTrackTest
 {
     /**
-     * Returns {@link DateFormat} instance parsing dates of format "Mon Jul 19 22:20:38 CEST 2010"
+     * Returns {@link DateFormat} instance parsing dates of format "Mon Jul 19 22:20:38 2010"
      * http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html
      */
     private static DateFormat dateFormat() { return new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" ); }
