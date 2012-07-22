@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 
 /**
@@ -15,10 +16,16 @@ import java.util.Arrays;
 public class YouTrackTest
 {
     /**
-     * Returns {@link DateFormat} instance parsing dates of format "Mon Jul 19 22:20:38 2010"
+     * Returns {@link DateFormat} instance formatting dates into "Mon Jul 19 22:20:38 2010".
      * http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html
      */
-    private static DateFormat dateFormat() { return new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" ); }
+    private static DateFormat dateFormat()
+    {
+        final DateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" );
+        dateFormat.setTimeZone( TimeZone.getTimeZone( "GMT" ));
+        return dateFormat;
+    }
+
 
     private final YouTrack yt = new YouTrack( "http://rest-clients.myjetbrains.com/youtrack/" );
 
@@ -46,8 +53,8 @@ public class YouTrackTest
         assertEquals ( "101", issue.getNumberInProject() );
         assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
         assertTrue   ( issue.getDescription().trim().startsWith( "* List<File> instead of Collection<File>" ) );
-        assertEquals ( "Mon Jul 19 22:20:38 2010", dateFormat.format( issue.getCreated()));
-        assertEquals ( "Sun Feb 27 23:42:16 2011", dateFormat.format( issue.getUpdated()));
+        assertEquals ( "Mon Jul 19 20:20:38 2010", dateFormat.format( issue.getCreated()));
+        assertEquals ( "Sun Feb 27 22:42:16 2011", dateFormat.format( issue.getUpdated()));
         assertEquals ( null, issue.getResolved());
         assertEquals ( "evgenyg",       issue.getUpdaterName());
         assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
