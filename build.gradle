@@ -58,6 +58,8 @@ subprojects {
         downloadJavadoc = true
     }
 
+    clean { delete( "$rootDir/out", "$rootDir/.gradle" ) }
+
     repositories {
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
