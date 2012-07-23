@@ -47,7 +47,7 @@ public class YouTrackTest
 
 
     @Test
-    public void testExistingUnresolvedIssue () throws ParseException
+    public void testUnresolvedIssue () throws ParseException
     {
         /**
          * http://rest-clients.myjetbrains.com/youtrack/issue/pl-101
@@ -93,7 +93,7 @@ public class YouTrackTest
 
 
     @Test
-    public void testExistingResolvedIssue () throws ParseException
+    public void testResolvedIssue () throws ParseException
     {
         /**
          * http://rest-clients.myjetbrains.com/youtrack/issue/pl-357
