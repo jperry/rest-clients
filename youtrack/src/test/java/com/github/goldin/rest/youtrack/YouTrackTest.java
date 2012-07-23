@@ -1,5 +1,6 @@
 package com.github.goldin.rest.youtrack;
 
+import static junit.framework.TestCase.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,8 +8,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static junit.framework.TestCase.*;
 
 
 /**
@@ -63,25 +62,38 @@ public class YouTrackTest
         assertEquals ( "pl-101", issue.getId());
         assertNull   ( issue.getJiraId());
         assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
-        assertEquals ( "pl",  issue.getProjectShortName());
-        assertEquals ( 101,   ( int ) issue.getNumberInProject());
-        assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
+        assertEquals ( "pl", issue.getProjectShortName());
+        assertEquals ( 101, ( int ) issue.getNumberInProject());
+        assertEquals ( "<filter>/<process> enhancements", issue.getSummary());
         assertTrue   ( issue.getDescription().trim().startsWith( "* List<File> instead of Collection<File>" ));
         assertEquals ( "Mon Jul 19 20:20:38 2010", dateFormat.format( issue.getCreated()));
         assertEquals ( "Mon Jul 23 10:58:18 2012", dateFormat.format( issue.getUpdated()));
         assertEquals ( null, issue.getResolved());
-        assertEquals ( "evgenyg",       issue.getUpdaterName());
+        assertEquals ( "evgenyg", issue.getUpdaterName());
         assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
-        assertEquals ( "evgenyg",       issue.getReporterName());
+        assertEquals ( "evgenyg", issue.getReporterName());
         assertEquals ( "Evgeny Goldin", issue.getReporterFullName());
         assertEquals ( 2,               ( int ) issue.getCommentsCount());
         assertEquals ( 3,               issue.getComments().size());
-        assertEquals ( "Comment 1. Update.", issue.getComment( 0 ).getText());
-        assertEquals ( "Comment 2",          issue.getComment( 1 ).getText());
-        assertEquals ( "Comment 3",          issue.getComment( 2 ).getText());
-        assertFalse  ( issue.getComment( 0 ).getDeleted());
-        assertTrue   ( issue.getComment( 1 ).getDeleted());
-        assertFalse  ( issue.getComment( 2 ).getDeleted());
+
+        final Comment comment1 = issue.getComment( 0 );
+        assertEquals ( "Comment 1. Update.", comment1.getText());
+        assertFalse  ( comment1.getDeleted());
+        assertEquals ( "Mon Jul 23 10:40:21 2012", dateFormat.format( comment1.getCreatedDate()));
+        assertEquals ( "Mon Jul 23 11:28:44 2012", dateFormat.format( comment1.getUpdatedDate()));
+
+        final Comment comment2 = issue.getComment( 1 );
+        assertEquals ( "Comment 2", comment2.getText());
+        assertTrue   ( comment2.getDeleted());
+        assertEquals ( "Mon Jul 23 10:40:26 2012", dateFormat.format( comment2.getCreatedDate()));
+        assertEquals ( "Mon Jul 23 11:29:07 2012", dateFormat.format( comment2.getUpdatedDate()));
+
+        final Comment comment3 = issue.getComment( 2 );
+        assertEquals ( "Comment 3", comment3.getText());
+        assertFalse  ( comment3.getDeleted());
+        assertEquals ( "Mon Jul 23 10:58:18 2012", dateFormat.format( comment3.getCreatedDate()));
+        assertNull   ( comment3.getUpdatedDate());
+
         assertEquals ( 0,            ( int ) issue.getVotes());
         assertEquals ( customFields, issue.getCustomFields());
         assertEquals ( null,         issue.getPermittedGroup());
@@ -114,17 +126,22 @@ public class YouTrackTest
         assertEquals ( 357,  ( int ) issue.getNumberInProject());
         assertEquals ( "Support GitHub plugin", issue.getSummary());
         assertEquals ( "This is description.", issue.getDescription());
-        assertEquals ( "Sat Mar 05 19:16:56 2011", dateFormat.format( issue.getCreated() ));
-        assertEquals ( "Mon Jul 23 16:26:16 2012", dateFormat.format( issue.getUpdated() ));
-        assertEquals ( "Sun Apr 29 16:22:07 2012", dateFormat.format( issue.getResolved() ));
+        assertEquals ( "Sat Mar 05 19:16:56 2011", dateFormat.format( issue.getCreated()));
+        assertEquals ( "Mon Jul 23 16:26:16 2012", dateFormat.format( issue.getUpdated()));
+        assertEquals ( "Sun Apr 29 16:22:07 2012", dateFormat.format( issue.getResolved()));
         assertEquals ( "evgenyg",       issue.getUpdaterName());
         assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
         assertEquals ( "evgenyg", issue.getReporterName());
         assertEquals ( "Evgeny Goldin", issue.getReporterFullName());
         assertEquals ( 1, ( int ) issue.getCommentsCount());
         assertEquals ( 1, issue.getComments().size());
-        assertTrue   ( issue.getComment( 0 ).getText().startsWith( "If [https://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin Jenkins GitHub plugin] is installed" ));
-        assertFalse  ( issue.getComment( 0 ).getDeleted());
+
+        final Comment comment = issue.getComment( 0 );
+        assertTrue   ( comment.getText().startsWith( "If [https://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin Jenkins GitHub plugin] is installed" ));
+        assertFalse  ( comment.getDeleted());
+        assertEquals ( "Sun Apr 29 16:21:59 2012", dateFormat.format( comment.getCreatedDate()));
+        assertNull   ( comment.getUpdatedDate());
+
         assertEquals ( 0,            ( int ) issue.getVotes());
         assertEquals ( customFields, issue.getCustomFields());
         assertEquals ( null,         issue.getPermittedGroup());
@@ -139,6 +156,7 @@ public class YouTrackTest
          */
 
         int issuesFound = 0;
+        final long now  = new Date().getTime();
 
         for ( int j = 10; j <= 50; j++ )
         {
@@ -153,9 +171,14 @@ public class YouTrackTest
 
                 if ( issue.getResolved() != null )
                 {
-                    assertTrue   ( new Date().getTime() > issue.getResolved().getTime());
+                    assertTrue   ( now > issue.getResolved().getTime());
                     assertNotNull( issue.getCustomFields().get( "Fixed in build" ));
                     assertTrue   ( Integer.valueOf(( String ) issue.getCustomFields().get( "Fixed in build" )) > 0 );
+                }
+
+                for ( int commentIndex = 0; commentIndex < issue.getCommentsCount(); commentIndex++ )
+                {
+                    assertTrue( now > issue.getComment( commentIndex ).getCreatedDate().getTime());
                 }
 
                 issuesFound++;

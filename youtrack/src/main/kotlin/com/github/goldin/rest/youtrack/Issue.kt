@@ -8,6 +8,7 @@ import java.util.Map
 import kotlin.test.assertNotNull
 import com.github.goldin.rest.common.*
 import kotlin.test.assertTrue
+import kotlin.test.assertEquals
 
 
 /**
@@ -17,53 +18,58 @@ import kotlin.test.assertTrue
  */
 class Issue
 {
-    [Key] public var id               : String?           = null
-    [Key] public var jiraId           : Any?              = null
+    [Key] public  var id               : String?           = null
+    [Key] public  var jiraId           : Any?              = null
 
-    [Key] private var tag             : Array<ArrayMap<String, String>>? = null
-    [Key] private var field           : Array<ArrayMap<String, Any>?>?   = null
-    [Key] private var comment         : Array<ArrayMap<String, Any>>?    = null
+    [Key] private var tag              : Array<ArrayMap<String, String>>? = null
+    [Key] private var field            : Array<ArrayMap<String, Any>?>?   = null
+    [Key] private var comment          : Array<Comment>?                  = null
 
-          public var tags             : List<String>?     = null
-          public var projectShortName : String?           = null
-          public var numberInProject  : Integer?          = null
-          public var summary          : String?           = null
-          public var description      : String?           = null
-          public var created          : Date?             = null
-          public var updated          : Date?             = null
-          public var resolved         : Date?             = null
-          public var updaterName      : String?           = null
-          public var updaterFullName  : String?           = null
-          public var reporterName     : String?           = null
-          public var reporterFullName : String?           = null
-          public var commentsCount    : Integer?          = null
-          public var comments         : List<Comment>?    = null
-          public var votes            : Integer?          = null
-          public var customFields     : Map<String, Any>? = null
-          public var permittedGroup   : String?           = null
+          public  var tags             : List<String>?     = null
+          public  var projectShortName : String?           = null
+          public  var numberInProject  : Integer?          = null
+          public  var summary          : String?           = null
+          public  var description      : String?           = null
+          public  var created          : Date?             = null
+          public  var updated          : Date?             = null
+          public  var resolved         : Date?             = null
+          public  var updaterName      : String?           = null
+          public  var updaterFullName  : String?           = null
+          public  var reporterName     : String?           = null
+          public  var reporterFullName : String?           = null
+          public  var commentsCount    : Integer?          = null
+          public  var comments         : List<Comment>?    = null
+          public  var votes            : Integer?          = null
+          public  var customFields     : Map<String, Any>? = null
+          public  var permittedGroup   : String?           = null
 
 
     /**
      * Retrieves comment specified.
      */
-    fun getComment( index : Int ) : Comment?
+    fun getComment( commentIndex: Int ) : Comment?
     {
-        if (( comments == null ) || ( index < 0 ) || ( index >= comments!!.size ))
+        if ( commentIndex < 0 )
         {
-            throw CommentNotFoundException( id!!, index )
+            throw IllegalArgumentException( "Negative comment index [$commentIndex]" )
         }
 
-        return comments!!.get( index )
+        if (( comments == null ) || ( commentIndex >= comments!!.size ))
+        {
+            throw CommentNotFoundException( id!!, commentIndex )
+        }
+
+        return comments!!.get( commentIndex )
     }
 
 
     /**
-     * Updates an instance by converting Json-based issue representation to bean properties.
+     * Updates an instance by converting Json-based representation to bean properties.
      */
     fun update( issueIdExpected: String ): Issue
     {
         if ( arrayList( id, tag, field, comment ).any{ it == null }){ throw IssueNotFoundException( issueIdExpected ) }
-        assertTrue( id == issueIdExpected, "Issue id read \"$id\" != issue id expected \"$issueIdExpected\"" )
+        assertEquals( issueIdExpected, id, "Issue id read \"$id\" != issue id expected \"$issueIdExpected\"" )
 
         /**
          * Resetting jiraId if set to Object (null marker).
@@ -90,7 +96,7 @@ class Issue
         /**
          * Converting array of maps (each map is a comment) to list of comments.
          */
-        comments = comment!!.map { updateObject( Comment(), it, arrayList( "replies", "shownForIssueAuthor" ))}
+        comments = comment!!.map { it.update( issueIdExpected ) }
 
         return this
     }

@@ -49,7 +49,7 @@ class YouTrack ( url : String )
 
         if ( log.isDebugEnabled())
         {
-            log.debug( "Issue [$issueId] retrieved in [${ System.currentTimeMillis() - t }] ms" )
+            log.debug( "Issue [$issueId] read in [${ System.currentTimeMillis() - t }] ms" )
         }
 
         return issue

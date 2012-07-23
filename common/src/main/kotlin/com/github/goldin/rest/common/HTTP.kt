@@ -43,7 +43,7 @@ class HTTP
                     if ( isPost ) "POST" else
                                   null
 
-        assertTrue( title != null, "HTTP.request(): one of isHead/isGet/isPost needs to be specified" )
+        assertNotNull( title, "HTTP.request(): one of isHead/isGet/isPost needs to be specified" )
 
         val t        = System.currentTimeMillis()
         val request  = if ( isHead ) factory.buildHeadRequest( GenericUrl( url ))!! else

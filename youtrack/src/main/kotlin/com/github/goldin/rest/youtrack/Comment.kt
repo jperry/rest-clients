@@ -2,6 +2,10 @@ package com.github.goldin.rest.youtrack
 
 import com.google.api.client.util.Key
 import java.util.Date
+import kotlin.test.assertEquals
+import com.github.goldin.rest.common.verifyNotNull
+import java.math.BigDecimal
+import kotlin.test.assertTrue
 
 
 /**
@@ -9,13 +13,37 @@ import java.util.Date
  */
 class Comment
 {
-    [Key] public var id       : String?  = null
-    [Key] public var issueId  : String?  = null
-    [Key] public var jiraId   : String?  = null
-    [Key] public var parentId : String?  = null
-    [Key] public var author   : String?  = null
-    [Key] public var deleted  : Boolean? = null
-    [Key] public var created  : Date?    = null
-    [Key] public var updated  : Date?    = null
-    [Key] public var text     : String?  = null
+    [Key] public  var id          : String?     = null
+    [Key] public  var issueId     : String?     = null
+    [Key] public  var jiraId      : String?     = null
+    [Key] public  var parentId    : String?     = null
+    [Key] public  var author      : String?     = null
+    [Key] public  var deleted     : Boolean?    = null
+    [Key] public  var text        : String?     = null
+
+    [Key] private var created     : BigDecimal? = null
+          public  var createdDate : Date?       = null
+
+    [Key] private var updated     : BigDecimal? = null
+          public  var updatedDate : Date?       = null
+
+
+    /**
+     * Updates an instance by converting Json-based representation to bean properties.
+     */
+    fun update( issueIdExpected: String ): Comment
+    {
+        verifyNotNull( id, issueId, parentId, created, updated )
+        assertEquals ( issueIdExpected, issueId, "Issue id read \"$issueId\" != issue id expected \"$issueIdExpected\"" )
+        assertTrue   ( created!!.longValue() > 0 )
+
+        createdDate = Date( created!!.longValue())
+
+        if ( updated!!.longValue() > 0 )
+        {
+            updatedDate = Date( updated!!.longValue())
+        }
+
+        return this
+    }
 }
