@@ -26,7 +26,7 @@ class Issue
 
           public var tags             : List<String>?     = null
           public var projectShortName : String?           = null
-          public var numberInProject  : String?           = null
+          public var numberInProject  : Integer?          = null
           public var summary          : String?           = null
           public var description      : String?           = null
           public var created          : Date?             = null

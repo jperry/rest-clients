@@ -67,7 +67,7 @@ public class YouTrackTest
         assertNull   ( issue.getJiraId() );
         assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
         assertEquals ( "pl",  issue.getProjectShortName());
-        assertEquals ( "101", issue.getNumberInProject() );
+        assertEquals ( 101,   ( int ) issue.getNumberInProject() );
         assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
         assertTrue   ( issue.getDescription().trim().startsWith( "* List<File> instead of Collection<File>" ) );
         assertEquals ( "Mon Jul 19 20:20:38 2010", dateFormat.format( issue.getCreated()));
@@ -114,7 +114,7 @@ public class YouTrackTest
         assertNull   ( issue.getJiraId());
         assertEquals ( 0, issue.getTags().size() );
         assertEquals ( "pl", issue.getProjectShortName() );
-        assertEquals ( "357", issue.getNumberInProject() );
+        assertEquals ( 357,  ( int ) issue.getNumberInProject() );
         assertEquals ( "Support GitHub plugin", issue.getSummary() );
         assertEquals ( "This is description.", issue.getDescription() );
         assertEquals ( "Sat Mar 05 19:16:56 2011", dateFormat.format( issue.getCreated() ) );
@@ -141,10 +141,23 @@ public class YouTrackTest
          * http://rest-clients.myjetbrains.com/youtrack/issues/pl?q=sort+by%3A+%7Bissue+id%7D+asc+
          */
 
-        for ( String issueId : "10,11,12,18,20,23,24,25,27,29,34,43,44,50,51,56,59,64,79,80".split( "," ))
+        int issuesFound = 0;
+
+        for ( int j = 10; j <= 50; j++ )
         {
-            yt.issue( "pl-" + issueId );
+            String issueId = "pl-" + j;
+            if ( yt.issueExists( issueId ))
+            {
+                final Issue issue = yt.issue( issueId );
+                assertEquals( issueId,   issue.getId());
+                assertEquals( "pl",      issue.getProjectShortName());
+                assertEquals( j,         ( int ) issue.getNumberInProject());
+                assertEquals( "evgenyg", issue.getCustomFields().get( "Assignee" ));
+                issuesFound++;
+            }
         }
+
+        assertEquals( 14, issuesFound );
     }
 
 
