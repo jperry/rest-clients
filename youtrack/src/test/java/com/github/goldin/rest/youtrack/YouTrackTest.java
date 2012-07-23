@@ -134,6 +134,20 @@ public class YouTrackTest
     }
 
 
+    @Test
+    public void testRetrieveIssues()
+    {
+        /**
+         * http://rest-clients.myjetbrains.com/youtrack/issues/pl?q=sort+by%3A+%7Bissue+id%7D+asc+
+         */
+
+        for ( String issueId : "10,11,12,18,20,23,24,25,27,29,34,43,44,50,51,56,59,64,79,80".split( "," ))
+        {
+            yt.issue( "pl-" + issueId );
+        }
+    }
+
+
     @Test( expected = IssueNotFoundException.class )
     public void testNonExistingIssue()
     {
