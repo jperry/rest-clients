@@ -56,7 +56,7 @@ public fun updateObject( o : Any, map: Map<String, Any> ): Map<String, Any>
         if ( fieldValueConverted != null )
         {
             if ( field == null )
-            {
+            {   // The Object has no such field
                 unrecognizedFields.put( fieldName, fieldValueConverted )
             }
             else

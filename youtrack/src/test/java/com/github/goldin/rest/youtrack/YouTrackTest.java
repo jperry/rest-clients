@@ -163,22 +163,26 @@ public class YouTrackTest
             String issueId = "pl-" + j;
             if ( yt.issueExists( issueId ))
             {
-                final Issue issue = yt.issue( issueId );
+                final Issue  issue        = yt.issue( issueId );
+                final String fixedInBuild = issue.getCustomField( "Fixed in build" );
                 assertEquals( issueId,   issue.getId());
                 assertEquals( "pl",      issue.getProjectShortName());
                 assertEquals( j,         ( int ) issue.getNumberInProject());
-                assertEquals( "evgenyg", issue.getCustomFields().get( "Assignee" ));
+                assertEquals( "evgenyg", issue.getCustomField( "Assignee" ));
+                assertTrue  (( fixedInBuild == null ) || ( Integer.valueOf( fixedInBuild ) > 0 ));
 
                 if ( issue.getResolved() != null )
                 {
-                    assertTrue   ( now > issue.getResolved().getTime());
-                    assertNotNull( issue.getCustomFields().get( "Fixed in build" ));
-                    assertTrue   ( Integer.valueOf(( String ) issue.getCustomFields().get( "Fixed in build" )) > 0 );
+                    assertTrue  ( now > issue.getResolved().getTime());
+                    assertEquals( "Fixed", issue.getCustomField( "State" ));
                 }
 
-                for ( int commentIndex = 0; commentIndex < issue.getCommentsCount(); commentIndex++ )
+                assertTrue( issue.getCommentsCount() <= issue.getComments().size());
+                for ( int commentIndex = 0; commentIndex < issue.getComments().size(); commentIndex++ )
                 {
-                    assertTrue( now > issue.getComment( commentIndex ).getCreatedDate().getTime());
+                    final Comment comment = issue.getComment( commentIndex );
+                    assertTrue ( now > comment.getCreatedDate().getTime());
+                    assertFalse( comment.getText().trim().isEmpty());
                 }
 
                 issuesFound++;

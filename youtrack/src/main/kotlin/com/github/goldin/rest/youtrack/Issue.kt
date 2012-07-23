@@ -18,8 +18,8 @@ import kotlin.test.assertEquals
  */
 class Issue
 {
-    [Key] public  var id               : String?           = null
-    [Key] public  var jiraId           : Any?              = null
+    [Key] public  var id               : String? = null
+    [Key] public  var jiraId           : Any?    = null
 
     [Key] private var tag              : Array<ArrayMap<String, String>>? = null
     [Key] private var field            : Array<ArrayMap<String, Any>?>?   = null
@@ -51,7 +51,7 @@ class Issue
     {
         if ( commentIndex < 0 )
         {
-            throw IllegalArgumentException( "Negative comment index [$commentIndex]" )
+            throw IllegalArgumentException( "Issue [$id]: negative comment index [$commentIndex]" )
         }
 
         if (( comments == null ) || ( commentIndex >= comments!!.size ))
@@ -60,6 +60,22 @@ class Issue
         }
 
         return comments!!.get( commentIndex )
+    }
+
+
+    fun <T> getCustomField( fieldName : String                       ) : String? = getCustomField( fieldName, STRING_CLASS )
+    fun <T> getCustomField( fieldName : String, fieldType : Class<T> ) : T?
+    {
+        val fieldValue = customFields!!.get( fieldName )
+
+        if ( fieldValue == null ){ return null }
+
+        assertTrue( fieldType.isInstance( fieldValue ),
+                    "Issue [$id]: value of custom field [$fieldName] is [$fieldValue] " +
+                    "of type [${ fieldValue.javaClass.getName() }] which " +
+                    "is not assignment-compatible with type [${ fieldType.getName()}]" )
+
+        return fieldValue as T
     }
 
 
