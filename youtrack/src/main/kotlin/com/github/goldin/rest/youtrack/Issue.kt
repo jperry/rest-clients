@@ -46,6 +46,20 @@ class Issue
 
 
     /**
+     * Retrieves comment specified.
+     */
+    fun getComment( index : Int ) : Comment?
+    {
+        if (( comments == null ) || ( index < 0 ) || ( index >= comments!!.size ))
+        {
+            throw CommentNotFoundException( id!!, index )
+        }
+
+        return comments!!.get( index )
+    }
+
+
+    /**
      * Updates an instance by converting Json-based issue representation to bean properties.
      */
     fun update( issueIdExpected: String ): Issue

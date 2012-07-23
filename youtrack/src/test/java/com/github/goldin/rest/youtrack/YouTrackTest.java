@@ -60,7 +60,7 @@ public class YouTrackTest
         assertEquals ( "pl-101", issue.getId());
         assertNotNull( issue.getJiraId());
         assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
-        assertEquals ( "pl",     issue.getProjectShortName());
+        assertEquals ( "pl",  issue.getProjectShortName());
         assertEquals ( "101", issue.getNumberInProject() );
         assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
         assertTrue   ( issue.getDescription().trim().startsWith( "* List<File> instead of Collection<File>" ) );
@@ -73,6 +73,12 @@ public class YouTrackTest
         assertEquals ( "Evgeny Goldin", issue.getReporterFullName());
         assertEquals ( 2,               ( int ) issue.getCommentsCount());
         assertEquals ( 3,               issue.getComments().size());
+        assertEquals ( "Comment 1. Update.", issue.getComment( 0 ).getText());
+        assertEquals ( "Comment 2",          issue.getComment( 1 ).getText());
+        assertEquals ( "Comment 3",          issue.getComment( 2 ).getText());
+        assertFalse  ( issue.getComment( 0 ).getDeleted());
+        assertTrue   ( issue.getComment( 1 ).getDeleted());
+        assertFalse  ( issue.getComment( 2 ).getDeleted());
         assertEquals ( 0,               ( int ) issue.getVotes());
         assertEquals ( customFields,    issue.getCustomFields());
         assertEquals ( null,            issue.getPermittedGroup());
@@ -83,5 +89,12 @@ public class YouTrackTest
     public void testNonExistingIssue()
     {
         yt.issue( "pl-11111" );
+    }
+
+
+    @Test( expected = CommentNotFoundException.class )
+    public void testNonExistingComment()
+    {
+        yt.issue( "pl-101" ).getComment( 3 );
     }
 }
