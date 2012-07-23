@@ -1,13 +1,16 @@
 package com.github.goldin.rest.youtrack;
 
-import static junit.framework.TestCase.*;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
+
+import static junit.framework.TestCase.*;
 
 
 /**
@@ -41,26 +44,38 @@ public class YouTrackTest
 
 
     @Test
-    public void testExistingIssue() throws ParseException
+    public void testExistingUnresolvedIssue () throws ParseException
     {
-        final Issue      issue      = yt.issue( "pl-101" );
-        final DateFormat dateFormat = dateFormat();
+        final Issue               issue        = yt.issue( "pl-101" );
+        final DateFormat          dateFormat   = dateFormat();
+        final Map<String, String> customFields = new HashMap<String, String>(){{
+           put( "Subsystem",    "copy-maven-plugin" );
+           put( "Fix versions", "Pool" );
+           put( "State",        "Submitted" );
+           put( "Type",         "Task" );
+           put( "Assignee",     "evgenyg" );
+           put( "Priority",     "Normal" );
+        }};
 
         assertEquals ( "pl-101", issue.getId());
-        assertNotNull( issue.getJiraId() );
-        assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags() );
+        assertNotNull( issue.getJiraId());
+        assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
         assertEquals ( "pl",     issue.getProjectShortName());
         assertEquals ( "101", issue.getNumberInProject() );
         assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
         assertTrue   ( issue.getDescription().trim().startsWith( "* List<File> instead of Collection<File>" ) );
         assertEquals ( "Mon Jul 19 20:20:38 2010", dateFormat.format( issue.getCreated()));
-        assertEquals ( "Sun Feb 27 22:42:16 2011", dateFormat.format( issue.getUpdated()));
+        assertEquals ( "Mon Jul 23 10:58:18 2012", dateFormat.format( issue.getUpdated()));
         assertEquals ( null, issue.getResolved());
         assertEquals ( "evgenyg",       issue.getUpdaterName());
         assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
         assertEquals ( "evgenyg",       issue.getReporterName());
         assertEquals ( "Evgeny Goldin", issue.getReporterFullName());
-
+        assertEquals ( 3,               ( int ) issue.getCommentsCount());
+        assertEquals ( null,            issue.getComments());
+        assertEquals ( 0,               ( int ) issue.getVotes());
+        assertEquals ( customFields,    issue.getCustomFields());
+        assertEquals ( null,            issue.getPermittedGroup());
     }
 
 

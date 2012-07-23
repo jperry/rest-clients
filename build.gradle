@@ -14,7 +14,7 @@ defaultTasks 'clean', 'build', 'about', 'install'
 
 buildscript {
     repositories {
-//        maven   { url "${ System.properties[ 'user.home' ] }/.m2/repository" }
+        mavenRepo url: 'http://repository.jetbrains.com/kotlin/'
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
     dependencies {
