@@ -48,7 +48,7 @@ public fun updateObject( o : Any, map: Map<String, Any> ): Map<String, Any>
 
             if ( field == null )
             {
-                unrecognizedFields.put( fieldName, fieldValueS )
+                unrecognizedFields.put( fieldName, fieldValueS!! )
             }
             else
             {
