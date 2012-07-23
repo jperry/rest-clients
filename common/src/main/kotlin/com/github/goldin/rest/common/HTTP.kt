@@ -45,11 +45,6 @@ class HTTP
 
         assertTrue( title != null, "HTTP.request(): one of isHead/isGet/isPost needs to be specified" )
 
-        if ( log.isDebugEnabled())
-        {
-            log.debug( "${ title!! }: [${ url }]" )
-        }
-
         val t        = System.currentTimeMillis()
         val request  = if ( isHead ) factory.buildHeadRequest( GenericUrl( url ))!! else
                        if ( isGet  ) factory.buildGetRequest ( GenericUrl( url ))!! else
