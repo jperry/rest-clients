@@ -6,10 +6,7 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 import static junit.framework.TestCase.*;
 
@@ -64,8 +61,8 @@ public class YouTrackTest
         }};
 
         assertEquals ( "pl-101", issue.getId());
-        assertNull   ( issue.getJiraId() );
-        assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
+        assertNull   ( issue.getJiraId());
+        assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags() );
         assertEquals ( "pl",  issue.getProjectShortName());
         assertEquals ( 101,   ( int ) issue.getNumberInProject() );
         assertEquals ( "<filter>/<process> enhancements",    issue.getSummary());
@@ -153,6 +150,14 @@ public class YouTrackTest
                 assertEquals( "pl",      issue.getProjectShortName());
                 assertEquals( j,         ( int ) issue.getNumberInProject());
                 assertEquals( "evgenyg", issue.getCustomFields().get( "Assignee" ));
+
+                if ( issue.getResolved() != null )
+                {
+                    assertTrue   ( new Date().getTime() > issue.getResolved().getTime());
+                    assertNotNull( issue.getCustomFields().get( "Fixed in build" ));
+                    assertTrue   ( Integer.valueOf(( String ) issue.getCustomFields().get( "Fixed in build" )) > 0 );
+                }
+
                 issuesFound++;
             }
         }
