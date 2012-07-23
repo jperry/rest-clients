@@ -40,8 +40,6 @@ class YouTrack ( url : String )
     fun issue( issueId : String,
                fields  : List<String> = arrayList()): Issue
     {
-        if ( ! issueExists( issueId )){ throw IssueNotFoundException( issueId ) }
-
         return http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
                update( issueId )
     }

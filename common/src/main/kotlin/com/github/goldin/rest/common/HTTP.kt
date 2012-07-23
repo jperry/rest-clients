@@ -15,6 +15,7 @@ import kotlin.test.assertTrue
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.test.assertNotNull
+import com.google.api.client.json.Json
 
 
 class HTTP
@@ -58,7 +59,7 @@ class HTTP
         if ( headers != null )
         {
             val httpHeaders = HttpHeaders()
-            for ( entry in headers.entrySet())
+            for ( entry : Map.Entry<String, String>? in headers.entrySet())
             {
                 httpHeaders.set( entry!!.getKey(), entry.getValue())
             }
@@ -122,7 +123,7 @@ class HTTP
      */
     fun responseAsJson<T> ( url : String, rtype : Class<T> ) : T = request( isGet   = true,
                                                                             url     = url,
-                                                                            headers = hashMap( #( "Accept", "application/json" )),
+                                                                            headers = hashMap( #( "Accept", Json.CONTENT_TYPE )),
                                                                             parser  = JsonObjectParser( JacksonFactory())).
                                                                    parseAs( rtype )!!
 }

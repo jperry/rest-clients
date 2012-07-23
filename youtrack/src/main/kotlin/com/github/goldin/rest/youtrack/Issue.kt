@@ -24,7 +24,7 @@ class Issue
 
     [Key] private var tag             : Array<ArrayMap<String, String>>? = null
     [Key] private var field           : Array<ArrayMap<String, Any>?>?   = null
-    [Key] private var comment         : Array<ArrayMap<String, String>>? = null
+    [Key] private var comment         : Array<ArrayMap<String, Any>>?    = null
 
           public var tags             : List<String>?     = null
           public var projectShortName : String?           = null
@@ -69,6 +69,11 @@ class Issue
          * Updating object fields and getting back a map of unrecognized fields.
          */
         customFields = updateObject( this, fieldsMap )
+
+        /**
+         * Converting array of maps (each map is a comment) to list of comments.
+         */
+        comments = comment!!.map { updateObject( Comment(), it, arrayList( "replies", "shownForIssueAuthor" ))}
 
         return this
     }

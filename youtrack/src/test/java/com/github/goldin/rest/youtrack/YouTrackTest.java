@@ -71,8 +71,8 @@ public class YouTrackTest
         assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
         assertEquals ( "evgenyg",       issue.getReporterName());
         assertEquals ( "Evgeny Goldin", issue.getReporterFullName());
-        assertEquals ( 3,               ( int ) issue.getCommentsCount());
-        assertEquals ( null,            issue.getComments());
+        assertEquals ( 2,               ( int ) issue.getCommentsCount());
+        assertEquals ( 3,               issue.getComments().size());
         assertEquals ( 0,               ( int ) issue.getVotes());
         assertEquals ( customFields,    issue.getCustomFields());
         assertEquals ( null,            issue.getPermittedGroup());
