@@ -6,9 +6,7 @@ import java.util.Date
 import java.util.List
 import java.util.Map
 import kotlin.test.assertNotNull
-import com.github.goldin.rest.common.verifyNotNull
-import com.github.goldin.rest.common.updateObject
-import com.github.goldin.rest.common.convertToMap
+import com.github.goldin.rest.common.*
 import kotlin.test.assertTrue
 
 
@@ -66,6 +64,11 @@ class Issue
     {
         if ( arrayList( id, tag, field, comment ).any{ it == null }){ throw IssueNotFoundException( issueIdExpected ) }
         assertTrue( id == issueIdExpected, "Issue id read \"$id\" != issue id expected \"$issueIdExpected\"" )
+
+        /**
+         * Resetting jiraId if set to Object (null marker).
+         */
+        if ( jiraId?.javaClass == OBJECT_CLASS ){ jiraId = null }
 
         /**
          * Reading tags from array of maps (every map has a single "value" entry).

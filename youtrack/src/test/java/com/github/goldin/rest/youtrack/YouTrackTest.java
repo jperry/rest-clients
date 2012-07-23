@@ -1,5 +1,6 @@
 package com.github.goldin.rest.youtrack;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -18,19 +19,21 @@ import static junit.framework.TestCase.*;
  */
 public class YouTrackTest
 {
-    /**
-     * Returns {@link DateFormat} instance formatting dates into "Mon Jul 19 22:20:38 2010".
-     * http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html
-     */
-    private static DateFormat dateFormat()
-    {
-        final DateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" );
-        dateFormat.setTimeZone( TimeZone.getTimeZone( "GMT" ));
-        return dateFormat;
-    }
-
 
     private final YouTrack yt = new YouTrack( "http://rest-clients.myjetbrains.com/youtrack/" );
+
+    private DateFormat dateFormat;
+
+    /**
+     * Initializes {@link DateFormat} instance to format dates into "Mon Jul 19 20:20:38 2010"-like Strings (GMT timezone).
+     * http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html
+     */
+    @Before
+    public void initDateFormat()
+    {
+        dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" );
+        dateFormat.setTimeZone( TimeZone.getTimeZone( "GMT" ));
+    }
 
 
     @Test
@@ -46,8 +49,11 @@ public class YouTrackTest
     @Test
     public void testExistingUnresolvedIssue () throws ParseException
     {
+        /**
+         * http://rest-clients.myjetbrains.com/youtrack/issue/pl-101
+         */
+
         final Issue               issue        = yt.issue( "pl-101" );
-        final DateFormat          dateFormat   = dateFormat();
         final Map<String, String> customFields = new HashMap<String, String>(){{
            put( "Subsystem",    "copy-maven-plugin" );
            put( "Fix versions", "Pool" );
@@ -58,7 +64,7 @@ public class YouTrackTest
         }};
 
         assertEquals ( "pl-101", issue.getId());
-        assertNotNull( issue.getJiraId());
+        assertNull   ( issue.getJiraId() );
         assertEquals ( Arrays.asList( "tag1", "tag2" ), issue.getTags());
         assertEquals ( "pl",  issue.getProjectShortName());
         assertEquals ( "101", issue.getNumberInProject() );
@@ -79,9 +85,52 @@ public class YouTrackTest
         assertFalse  ( issue.getComment( 0 ).getDeleted());
         assertTrue   ( issue.getComment( 1 ).getDeleted());
         assertFalse  ( issue.getComment( 2 ).getDeleted());
-        assertEquals ( 0,               ( int ) issue.getVotes());
-        assertEquals ( customFields,    issue.getCustomFields());
-        assertEquals ( null,            issue.getPermittedGroup());
+        assertEquals ( 0,            ( int ) issue.getVotes());
+        assertEquals ( customFields, issue.getCustomFields());
+        assertEquals ( null,         issue.getPermittedGroup());
+    }
+
+
+
+    @Test
+    public void testExistingResolvedIssue () throws ParseException
+    {
+        /**
+         * http://rest-clients.myjetbrains.com/youtrack/issue/pl-357
+         */
+
+        final Issue               issue        = yt.issue( "pl-357" );
+        final Map<String, String> customFields = new HashMap<String, String>(){{
+           put( "Subsystem",      "jenkins-maven-plugin" );
+           put( "Fix versions",   "0.2.4" );
+           put( "State",          "Fixed" );
+           put( "Type",           "Feature" );
+           put( "Assignee",       "evgenyg" );
+           put( "Priority",       "Major" );
+           put( "Fixed in build", "835" );
+        }};
+
+        assertEquals ( "pl-357", issue.getId());
+        assertNull   ( issue.getJiraId());
+        assertEquals ( 0, issue.getTags().size() );
+        assertEquals ( "pl", issue.getProjectShortName() );
+        assertEquals ( "357", issue.getNumberInProject() );
+        assertEquals ( "Support GitHub plugin", issue.getSummary() );
+        assertEquals ( "This is description.", issue.getDescription() );
+        assertEquals ( "Sat Mar 05 19:16:56 2011", dateFormat.format( issue.getCreated() ) );
+        assertEquals ( "Mon Jul 23 16:26:16 2012", dateFormat.format( issue.getUpdated() ) );
+        assertEquals ( "Sun Apr 29 16:22:07 2012", dateFormat.format( issue.getResolved() ));
+        assertEquals ( "evgenyg",       issue.getUpdaterName());
+        assertEquals ( "Evgeny Goldin", issue.getUpdaterFullName());
+        assertEquals ( "evgenyg", issue.getReporterName() );
+        assertEquals ( "Evgeny Goldin", issue.getReporterFullName() );
+        assertEquals ( 1, ( int ) issue.getCommentsCount() );
+        assertEquals ( 1, issue.getComments().size() );
+        assertTrue   ( issue.getComment( 0 ).getText().startsWith( "If [https://wiki.jenkins-ci.org/display/JENKINS/Github+Plugin Jenkins GitHub plugin] is installed" ) );
+        assertFalse  ( issue.getComment( 0 ).getDeleted() );
+        assertEquals ( 0,            ( int ) issue.getVotes());
+        assertEquals ( customFields, issue.getCustomFields());
+        assertEquals ( null,         issue.getPermittedGroup());
     }
 
 
