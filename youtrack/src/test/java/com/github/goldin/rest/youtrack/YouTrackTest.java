@@ -196,7 +196,7 @@ public class YouTrackTest
                 assertFalse( issue.getCustomField( "Type"      ).trim().isEmpty());
                 assertFalse( issue.getCustomField( "Subsystem" ).trim().isEmpty());
                 assertFalse( issue.getCustomField( "Priority"  ).trim().isEmpty());
-                assertFalse( issue.getCustomField( "State" ).trim().isEmpty() );
+                assertFalse( issue.getCustomField( "State"     ).trim().isEmpty());
 
                 if ( issue.getResolved() != null )
                 {
