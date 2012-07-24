@@ -111,7 +111,7 @@ class Issue
         /**
          * Converting array of maps (each map is a comment) to list of comments.
          */
-        comments = comment!!.map { it.update( issueId ) }
+        comments = comment!!.map { it.update() }
 
         return this
     }

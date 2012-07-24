@@ -31,10 +31,9 @@ class Comment
     /**
      * Updates an instance by converting Json-based representation to bean properties.
      */
-    fun update( issueIdExpected: String ): Comment
+    fun update(): Comment
     {
         verifyNotNull( id, issueId, parentId, created, updated )
-        assertEquals ( issueIdExpected, issueId, "Issue id read \"$issueId\" != issue id expected \"$issueIdExpected\"" )
         assertTrue   ( created!!.longValue() > 0 )
 
         createdDate = Date( created!!.longValue())
