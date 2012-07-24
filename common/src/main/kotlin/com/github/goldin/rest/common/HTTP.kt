@@ -120,5 +120,5 @@ class HTTP
                                                                             url     = url,
                                                                             headers = hashMap( #( "Accept", Json.CONTENT_TYPE )),
                                                                             parser  = JsonObjectParser( JacksonFactory())).
-                                                                   parseAs( rtype )!!
+                                                                   parseAs( rtype )!! as T
 }
