@@ -82,10 +82,9 @@ class Issue
     /**
      * Updates an instance by converting Json-based representation to bean properties.
      */
-    fun update( issueIdExpected: String ): Issue
+    fun update( issueId: String ): Issue
     {
-        if ( arrayList( id, tag, field, comment ).any{ it == null }){ throw IssueNotFoundException( issueIdExpected ) }
-        assertEquals( issueIdExpected, id, "Issue id read \"$id\" != issue id expected \"$issueIdExpected\"" )
+        if ( arrayList( id, tag, field, comment ).any{ it == null }){ throw IssueNotFoundException( issueId ) }
 
         /**
          * Resetting jiraId if set to Object (null marker).
@@ -112,7 +111,7 @@ class Issue
         /**
          * Converting array of maps (each map is a comment) to list of comments.
          */
-        comments = comment!!.map { it.update( issueIdExpected ) }
+        comments = comment!!.map { it.update( issueId ) }
 
         return this
     }

@@ -157,12 +157,11 @@ public class YouTrackTest
     public void testRetrieveIssues()
     {
         testRetrieveIssues( yt.url,                               "pl",   random.nextInt( 350   ), 10 );
-
-// Known problems: issue can be invisible to guest, other issue can be returned if was moved.
-//        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "pl",   random.nextInt( 600   ), 10 );
-//        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "gc",   random.nextInt( 100   ), 10 );
-//        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "JT",   random.nextInt( 15800 ), 10 );
-//        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "IDEA", random.nextInt( 89000 ), 10 );
+        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "pl",   random.nextInt( 600   ), 10 );
+        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "gc",   random.nextInt( 100   ), 10 );
+        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "JT",   random.nextInt( 15800 ), 10 );
+        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "IDEA", random.nextInt( 89000 ), 10 );
+        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "TW",   random.nextInt( 22700 ), 10 );
     }
 
 
@@ -184,17 +183,24 @@ public class YouTrackTest
             String issueId = projectShortName + '-' + j;
             if ( yt.issueExists( issueId ))
             {
-                final Issue  issue        = yt.issue( issueId );
-                final String fixedInBuild = issue.getCustomField( "Fixed in build" );
-                assertEquals( issueId,          issue.getId());
-                assertEquals( projectShortName, issue.getProjectShortName());
-                assertEquals( j,                ( int ) issue.getNumberInProject());
-                assertTrue  (( fixedInBuild == null ) || ( Integer.valueOf( fixedInBuild ) > 0 ));
+                final Issue issue;
+                try   { issue = yt.issue( issueId ); }
+                catch ( IssueNotFoundException ignored ) { continue; } // When issue is not visible to the guest user.
+
+                if ( issueId.equals( issue.getId())) // Issue was not moved.
+                {
+                    assertEquals ( projectShortName, issue.getProjectShortName());
+                    assertEquals ( j,                ( int ) issue.getNumberInProject());
+                }
+
+                assertFalse( issue.getCustomField( "Type"      ).trim().isEmpty());
+                assertFalse( issue.getCustomField( "Subsystem" ).trim().isEmpty());
+                assertFalse( issue.getCustomField( "Priority"  ).trim().isEmpty());
+                assertFalse( issue.getCustomField( "State" ).trim().isEmpty() );
 
                 if ( issue.getResolved() != null )
                 {
-                    assertTrue  ( now > issue.getResolved().getTime());
-                    assertEquals( "Fixed", issue.getCustomField( "State" ));
+                    assertTrue( now > issue.getResolved().getTime());
                 }
 
                 assertTrue( issue.getCommentsCount() <= issue.getComments().size());
