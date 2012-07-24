@@ -6,6 +6,7 @@ import kotlin.test.assertEquals
 import com.github.goldin.rest.common.verifyNotNull
 import java.math.BigDecimal
 import kotlin.test.assertTrue
+import kotlin.test.assertFalse
 
 
 /**
@@ -33,7 +34,8 @@ class Comment
      */
     fun update(): Comment
     {
-        verifyNotNull( id, issueId, parentId, created, updated )
+        verifyNotNull( id, issueId, parentId, author, deleted, text, created, updated )
+        assertFalse  ( text!!.trim().isEmpty())
         assertTrue   ( created!!.longValue() > 0 )
 
         createdDate = Date( created!!.longValue())
