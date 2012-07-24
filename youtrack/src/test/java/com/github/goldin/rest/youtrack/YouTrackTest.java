@@ -1,6 +1,5 @@
 package com.github.goldin.rest.youtrack;
 
-import static junit.framework.TestCase.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +9,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static junit.framework.TestCase.*;
 
 
 /**
@@ -155,24 +156,39 @@ public class YouTrackTest
     @Test
     public void testRetrieveIssues()
     {
-        /**
-         * http://rest-clients.myjetbrains.com/youtrack/issues/pl?q=sort+by%3A+%7Bissue+id%7D+asc+
-         */
+        testRetrieveIssues( yt.url,                               "pl",   random.nextInt( 350   ), 10 );
 
-        final long now       = new Date().getTime();
-        final int issueStart = random.nextInt( 300 );
+// Known problems: issue can be invisible to guest, other issue can be returned if was moved.
+//        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "pl",   random.nextInt( 600   ), 10 );
+//        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "gc",   random.nextInt( 100   ), 10 );
+//        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "JT",   random.nextInt( 15800 ), 10 );
+//        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "IDEA", random.nextInt( 89000 ), 10 );
+    }
 
-        for ( int j = issueStart; j <= ( issueStart + 50 ); j++ )
+
+    /**
+     * Reads N issues using the YouTrack instance specified.
+     *
+     * @param youTrackUrl      YouTrack URL
+     * @param projectShortName short name of a project
+     * @param issueStart       first issue to read
+     * @param numberOfIssues   number of issues to read
+     */
+    private void testRetrieveIssues( String youTrackUrl, String projectShortName, int issueStart, int numberOfIssues )
+    {
+        final long     now = new Date().getTime();
+        final YouTrack yt  = new YouTrack( youTrackUrl );
+
+        for ( int j = issueStart; j <= ( issueStart + numberOfIssues ); j++ )
         {
-            String issueId = "pl-" + j;
+            String issueId = projectShortName + '-' + j;
             if ( yt.issueExists( issueId ))
             {
                 final Issue  issue        = yt.issue( issueId );
                 final String fixedInBuild = issue.getCustomField( "Fixed in build" );
-                assertEquals( issueId,   issue.getId());
-                assertEquals( "pl",      issue.getProjectShortName());
-                assertEquals( j,         ( int ) issue.getNumberInProject());
-                assertEquals( "evgenyg", issue.getCustomField( "Assignee" ));
+                assertEquals( issueId,          issue.getId());
+                assertEquals( projectShortName, issue.getProjectShortName());
+                assertEquals( j,                ( int ) issue.getNumberInProject());
                 assertTrue  (( fixedInBuild == null ) || ( Integer.valueOf( fixedInBuild ) > 0 ));
 
                 if ( issue.getResolved() != null )

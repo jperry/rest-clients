@@ -4,7 +4,7 @@ package com.github.goldin.rest.youtrack
 /**
  * Throws when issue requested doesn't exist.
  */
-class IssueNotFoundException  ( issueId : String ) : RuntimeException( "Issue \"$issueId\" was not found." )
+class IssueNotFoundException  ( issueId : String ) : RuntimeException( "Issue \"$issueId\" doesn't exist or is not visible to the current user." )
 
 
 /**

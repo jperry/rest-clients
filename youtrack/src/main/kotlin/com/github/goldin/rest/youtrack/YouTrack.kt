@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory
  * http://confluence.jetbrains.net/display/YTD4/General+REST+API
  * http://confluence.jetbrains.net/display/YTD4/YouTrack+REST+API+Reference
  */
-class YouTrack ( url : String )
+class YouTrack ( val url : String )
 {
     class object
     {
