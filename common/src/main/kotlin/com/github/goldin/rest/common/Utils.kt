@@ -25,8 +25,9 @@ val STRING_CLASS  : Class<String>  = javaClass<String>()
 val INTEGER_CLASS : Class<Integer> = javaClass<Integer>()
 val DATE_CLASS    : Class<Date>    = javaClass<Date>()
 
-//val BOOLEAN_CLASS : Class<Boolean> = javaClass<Boolean>()
+// val BOOLEAN_CLASS : Class<Boolean> = javaClass<Boolean>()
 // throws java.lang.NoClassDefFoundError: Z
+// http://youtrack.jetbrains.com/issue/KT-2318
 
 
 
@@ -126,7 +127,7 @@ public fun convertValue( value : Any, targetType: Class<out Any?> ): Any
             valueConverted = if ( valueType == DATE_CLASS    ) value else Date( Long.valueOf( valueStringifed )!! )
         }
         else if ( targetType.getName() == "java.lang.Boolean" )
-        {
+        {   // http://youtrack.jetbrains.com/issue/KT-2318
             valueConverted = if ( valueType.getName() == "java.lang.Boolean" ) value else Boolean.valueOf( valueStringifed )
         }
         else
