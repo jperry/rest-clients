@@ -4,6 +4,8 @@ import static junit.framework.TestCase.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ public class YouTrackTest
     private final YouTrack yt = new YouTrack( "http://rest-clients.myjetbrains.com/youtrack/" );
 
     private DateFormat dateFormat;
+    private Random     random;
 
     /**
      * Initializes {@link DateFormat} instance to format dates into "Mon Jul 19 20:20:38 2010"-like Strings (GMT timezone).
@@ -29,6 +32,7 @@ public class YouTrackTest
     {
         dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" );
         dateFormat.setTimeZone( TimeZone.getTimeZone( "GMT" ));
+        random     = new SecureRandom( String.valueOf( System.currentTimeMillis()).getBytes( Charset.forName( "UTF-8" )));
     }
 
 
@@ -155,10 +159,10 @@ public class YouTrackTest
          * http://rest-clients.myjetbrains.com/youtrack/issues/pl?q=sort+by%3A+%7Bissue+id%7D+asc+
          */
 
-        int issuesFound = 0;
-        final long now  = new Date().getTime();
+        final long now       = new Date().getTime();
+        final int issueStart = random.nextInt( 300 );
 
-        for ( int j = 10; j <= 50; j++ )
+        for ( int j = issueStart; j <= ( issueStart + 50 ); j++ )
         {
             String issueId = "pl-" + j;
             if ( yt.issueExists( issueId ))
@@ -184,12 +188,8 @@ public class YouTrackTest
                     assertTrue ( now > comment.getCreatedDate().getTime());
                     assertFalse( comment.getText().trim().isEmpty());
                 }
-
-                issuesFound++;
             }
         }
-
-        assertEquals( 14, issuesFound );
     }
 
 
