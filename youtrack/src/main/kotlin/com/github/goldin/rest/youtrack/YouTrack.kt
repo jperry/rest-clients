@@ -47,7 +47,8 @@ class YouTrack ( val url : String )
     {
         val t   = System.currentTimeMillis();
         val url = if (( fields != null ) && ( fields.size() > 0 ))
-                      urlBuilder.url( urlBuilder.issue( issueId ), fields.map { #( "with", it )})
+                      urlBuilder.url( urlBuilder.issue( issueId ),
+                                      fields.map<String, Tuple2<String, String>> { #( "with", it )})
                   else
                       urlBuilder.issue( issueId )
 
