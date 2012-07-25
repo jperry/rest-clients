@@ -1,5 +1,6 @@
 package com.github.goldin.rest.youtrack;
 
+import static junit.framework.TestCase.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,8 +10,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static junit.framework.TestCase.*;
 
 
 /**
@@ -226,5 +225,29 @@ public class YouTrackTest
     public void testNonExistingComment()
     {
         yt.issue( "pl-101" ).getComment( 3 );
+    }
+
+
+    @Test
+    public void testPartialIssue()
+    {
+        final Issue issue1 = yt.partialIssue( "pl-101", Arrays.asList( "id" ));
+        assertEquals( "pl-101", issue1.getId());
+        assertNull( issue1.getProjectShortName());
+        assertNull( issue1.getSummary());
+        assertNull( issue1.getDescription());
+        assertTrue( issue1.getCustomFields().isEmpty());
+        assertNull( issue1.getCreated());
+        assertNull( issue1.getReporterName());
+
+        final Issue issue2 = yt.partialIssue( "pl-101", Arrays.asList( "State", "summary", "description" ));
+        assertEquals( "pl-101", issue1.getId()); // Always returned
+        assertNull( issue2.getProjectShortName());
+        assertNotNull( issue2.getSummary());
+        assertNotNull( issue2.getDescription());
+        assertNotNull( issue2.getCustomField( "State" ));
+        assertEquals ( 1, issue2.getCustomFields().size());
+        assertNull( issue2.getCreated());
+        assertNull( issue2.getReporterName());
     }
 }

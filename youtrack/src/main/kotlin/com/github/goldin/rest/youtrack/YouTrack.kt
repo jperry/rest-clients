@@ -5,6 +5,8 @@ import java.util.List
 import kotlin.test.assertTrue
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import com.github.goldin.rest.common.*
+import java.util.Map
 
 
 /**
@@ -33,19 +35,23 @@ class YouTrack ( val url : String )
      * Retrieves issue specified.
      * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
-    fun issue( issueId : String ): Issue = issue( issueId, arrayList())
+    fun issue( issueId : String ): Issue = partialIssue( issueId, arrayList())
 
 
     /**
      * Retrieves issue specified.
      * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
-    fun issue( issueId : String,
-               fields  : List<String> = arrayList()): Issue
+    fun partialIssue( issueId : String,
+                      fields  : List<String>? = null ): Issue
     {
-        val t     = System.currentTimeMillis();
-        val issue = http.responseAsJson( urlBuilder.issue( issueId ), javaClass<Issue>()).
-                    update( issueId )
+        val t   = System.currentTimeMillis();
+        val url = if (( fields != null ) && ( fields.size() > 0 ))
+                      urlBuilder.url( urlBuilder.issue( issueId ), fields.map { #( "with", it )})
+                  else
+                      urlBuilder.issue( issueId )
+
+        val issue = http.responseAsJson( url, javaClass<Issue>()).update( issueId )
 
         if ( log.isDebugEnabled())
         {

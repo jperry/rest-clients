@@ -99,7 +99,7 @@ class Issue
         /**
          * Converting array of maps (every map has two entries: field's "name" and "value") to map of fields: name => value.
          */
-        val fieldsMap = convertToMap<ArrayMap<String, Any>, String, Any>( field!! ) {
+        val fieldsMap = field!!.convertToMap<ArrayMap<String, Any>, String, Any> {
             map -> #( map.get( "name"  )!! as String, map.get( "value" )!! )
         }
 

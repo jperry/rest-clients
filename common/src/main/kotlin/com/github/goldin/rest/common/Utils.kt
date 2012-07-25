@@ -42,7 +42,7 @@ public fun updateObject( o : Any, map: Map<String, Any> ): Map<String, Any>
    /**
     * Mapping of object fields: field name => field instance
     */
-    val objectFields = convertToMap<Field, String, Field>( o.javaClass.getFields()!! ){
+    val objectFields = o.javaClass.getFields()!!.convertToMap<Field, String, Field> {
         field -> #( field.getName()!!, field )
     }
 
@@ -159,11 +159,11 @@ public inline fun verifyNotNull( vararg objects: Any? ): Unit = for ( o in objec
  * K  - type of tuple's first element returned by an operation and used as map's key
  * V  - type of tuple's second element returned by an operation and used as map's value
  */
-public inline fun <T, K, V> convertToMap( array: Array<T?>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
+public inline fun <T, K, V> Array<T?>.convertToMap( operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
 {
     val map : Map<K, V> = hashMap()
 
-    for ( o in array.filter{ it != null })
+    for ( o in this.filter{ it != null })
     {
         val tuple = operation( o!! )
         map.put( tuple._1, tuple._2 )
@@ -180,11 +180,11 @@ public inline fun <T, K, V> convertToMap( array: Array<T?>, operation: ( T ) -> 
  * K  - type of tuple's first element returned by an operation and used as map's key
  * V  - type of tuple's second element returned by an operation and used as map's value
  */
-public inline fun <T, K, V> convertToMap( collection: Collection<T?>, operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
+public inline fun <T, K, V> Collection<T?>.convertToMap( operation: ( T ) -> Tuple2<K, V> ) : Map<K, V>
 {
     val map : Map<K, V> = hashMap()
 
-    for ( o in collection.filter{ it != null })
+    for ( o in this.filter{ it != null })
     {
         val tuple = operation( o!! )
         map.put( tuple._1, tuple._2 )

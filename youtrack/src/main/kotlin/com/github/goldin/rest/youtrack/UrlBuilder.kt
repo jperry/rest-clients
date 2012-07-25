@@ -1,6 +1,9 @@
 package com.github.goldin.rest.youtrack
 
 import kotlin.test.assertFalse
+import java.util.Map
+import java.net.URLEncoder
+import java.util.Collection
 
 
 /**
@@ -33,4 +36,19 @@ class UrlBuilder( url : String )
         checkNotNull( issueId, "'issueId' can't be null" )
         return "${ issue( issueId ) }/exists"
     }
+
+
+    /**
+     * [[URLEncoder.encode()]] wrapper using "UTF-8" charset.
+     */
+    private fun encode( s : String ): String = URLEncoder.encode( s, "UTF-8" )!!
+
+
+    /**
+     * Builds a URL (url?a=b&c=d) from tuples of arguments ( #(a,b), #(c,d), .. ).
+     */
+    fun url( url: String, arguments: Collection<Tuple2<String, String>> ): String = url + '?' + arguments.map {
+        tuple -> "${ encode( tuple._1 ) }=${ encode( tuple._2 ) }"
+    }.
+    makeString( "&" )
 }
