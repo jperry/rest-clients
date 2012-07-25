@@ -14,6 +14,7 @@ defaultTasks 'clean', 'build', 'about', 'install'
 
 buildscript {
     repositories {
+//        mavenLocal()
         mavenRepo url: 'http://repository.jetbrains.com/kotlin/'
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
