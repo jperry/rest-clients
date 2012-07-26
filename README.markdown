@@ -1,5 +1,5 @@
 
-* Java REST API for YouTrack, TeamCity, and Artifactory.
+* Java REST API for YouTrack, TeamCity, and Artifactory developed in [Kotlin](confluence.jetbrains.net/display/Kotlin).
 
 * <a href="http://evgeny-goldin.org/teamcity/viewType.html?buildTypeId=bt54&tab=buildTypeStatusDiv&guest=1"><img src="http://evgeny-goldin.org/teamcity/app/rest/builds/buildType:(id:bt54)/statusIcon"/></a>
 
