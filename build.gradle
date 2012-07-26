@@ -96,16 +96,8 @@ subprojects {
 }
 
 
-project( ':artifactory' ) {
-    dependencies { compile project( ':common' ) }
-}
-
-project( ':teamcity' ) {
-    dependencies { compile project( ':common' ) }
-}
-
-project( ':youtrack' ) {
-    dependencies { compile project( ':common' ) }
+subprojects.findAll{ it.name != 'common' }.each {
+    it.dependencies { compile project( ':common' ) }
 }
 
 
