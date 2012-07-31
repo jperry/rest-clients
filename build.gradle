@@ -55,7 +55,7 @@ subprojects {
 
     idea.module {
         downloadSources = true
-        downloadJavadoc = true
+        downloadJavadoc = false
     }
 
     clean { delete( "$rootDir/out", "$rootDir/build" ) }
