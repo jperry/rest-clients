@@ -92,14 +92,9 @@ subprojects {
         from sourceSets.main.allSource
     }
 
-    task kdocJar( type: Jar, dependsOn: kdoc ) {
-         classifier = 'javadoc'
-         from kdoc.destinationDir
-    }
 
     artifacts {
          archives sourcesJar
-    //     archives kdocJar
     }
 }
 
