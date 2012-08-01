@@ -9,12 +9,12 @@ final logbackVersion    = '1.0.6'        // http://search.maven.org/#search%7Cga
 final junitVersion      = '4.10'         // http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22junit%22%20AND%20a%3A%22junit%22
 
 
-defaultTasks 'clean', 'build', 'about', 'install'
+defaultTasks 'clean', 'duplicates', 'build', 'about', 'install'
 
 
 buildscript {
     repositories {
-//        mavenLocal()
+        mavenLocal()
         mavenRepo url: 'http://repository.jetbrains.com/kotlin/'
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
@@ -67,6 +67,8 @@ subprojects {
     about        { dumpDependencies = true }
     duplicates   { configurations   = [ 'runtime' ]
                    verbose          = true }
+
+    tasks.duplicates.dependsOn jar
 
     dependencies {
         compile     "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
