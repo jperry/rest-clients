@@ -1,18 +1,17 @@
 package com.github.goldin.rest.common;
 
+import static junit.framework.TestCase.assertTrue;
 import org.junit.Test;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static junit.framework.TestCase.assertTrue;
-
 
 /**
  * {@link HTTP} tests.
  */
-public class HttpTest
+public class HttpTest extends BaseTest
 {
     private final HTTP http = new HTTP();
 

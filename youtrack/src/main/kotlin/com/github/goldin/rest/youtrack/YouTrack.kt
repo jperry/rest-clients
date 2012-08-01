@@ -22,7 +22,7 @@ class YouTrack ( val url : String )
         private val log  : Logger = LoggerFactory.getLogger( javaClass<YouTrack>())!!
     }
 
-    private val urlBuilder : UrlBuilder = UrlBuilder( url )
+    val urlBuilder : UrlBuilder = UrlBuilder( url )
 
     /**
      * Checks that an issue specified exists.

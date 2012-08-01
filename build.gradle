@@ -15,7 +15,6 @@ defaultTasks 'clean', 'duplicates', 'compileKotlin', 'build', 'about', 'install'
 
 buildscript {
     repositories {
-        mavenLocal()
         mavenRepo url: 'http://repository.jetbrains.com/kotlin/'
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
@@ -61,19 +60,15 @@ subprojects {
 
     clean { delete( "$rootDir/out", "$rootDir/build" ) }
 
+
     repositories {
+        mavenLocal()
         mavenRepo url: 'http://evgenyg.artifactoryonline.com/evgenyg/repo/'
     }
 
-    about        { dumpDependencies = true }
-    duplicates   { configurations   = [ 'runtime' ]
-                   verbose          = true }
-
-    tasks.duplicates.dependsOn jar
 
     dependencies {
         compile     "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-                    "com.github.goldin:kant:$kantVersion",
                     "org.slf4j:slf4j-api:$slf4jVersion",
                     "com.google.guava:guava:$guavaVersion",
                     "com.google.http-client:google-http-client:$googleHttpVersion"
@@ -85,6 +80,13 @@ subprojects {
 
     compileJava.dependsOn     compileKotlin
     compileTestJava.dependsOn compileKotlin
+
+
+    about        { dumpDependencies = true }
+    duplicates   { configurations   = [ 'runtime' ]
+                   verbose          = true }
+
+    tasks.duplicates.dependsOn jar
 
 
     task sourcesJar( type: Jar, dependsOn: classes ) {

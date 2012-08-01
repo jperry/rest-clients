@@ -1,0 +1,2216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 1.12 02/15/2012 04:51 PM"/>
+    <grammars/>
+    <resources base="http://youtrack.jetbrains.com/rest/">
+        <resource path="/admin/customfield/bundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/{fieldValue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fieldValue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleNameFieldValue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_BundleNameFieldValue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleNameFieldValue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newValue"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleNameFieldValue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/userInternal">
+            <resource path="/logout">
+                <method name="POST" id="post_Logout">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="location"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/setup/email">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="POST" id="post">
+                <request>
+                    <representation mediaType="*/*"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/admin/role">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{role}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="role"/>
+                <method name="GET" id="get_Role">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Role">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Role">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Role">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{role}/permission">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="role"/>
+                <method name="GET" id="get_RolePermission">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{role}/permission/{permission}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="role"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="permission"/>
+                <method name="POST" id="post_RolePermissionPermission">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_RolePermissionPermission">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/folder">
+            <resource path="/{folder}/moveIssue">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="folder"/>
+                <method name="POST" id="post_FolderMoveIssue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="moved"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="leading"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="orderExpected"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{folder}/resetIssuePosition">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="folder"/>
+                <method name="POST" id="post_FolderResetIssuePosition">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="issue"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/ownedFieldBundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/{fieldName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fieldName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleNameFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_BundleNameFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="login"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleNameFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newOwner"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleNameFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/group">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{group}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="group"/>
+                <method name="GET" id="get_Group">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Group">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="autoJoin"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Group">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="autoJoin"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Group">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{group}/role">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="group"/>
+                <method name="GET" id="get_GroupRole">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{group}/role/{role}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="role"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="group"/>
+                <method name="GET" id="get_GroupRoleRole">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_GroupRoleRole">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_GroupRoleRole">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{group}/icon">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="group"/>
+                <method name="POST" id="post_GroupIcon">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_GroupIcon">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/project">
+            <resource path="/byname/{project}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_BynameProject">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/all">
+                <method name="GET" id="get_All">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="readOnly"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/allShort">
+                <method name="GET" id="get_AllShort">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="readOnly"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/issues/{project}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_IssuesProject">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="updatedAfter"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/issues">
+                <method name="GET" id="get_Issues">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="updatedAfter"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/priorities">
+                <method name="GET" id="get_Priorities">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/states">
+                <method name="GET" id="get_States">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/types">
+                <method name="GET" id="get_Types">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/resolutions">
+                <method name="GET" id="get_Resolutions">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/versionBundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/{versionName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="versionName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleNameVersionName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_BundleNameVersionName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="releaseDate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="released"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="archived"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleNameVersionName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="releaseDate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="released"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="archived"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleNameVersionName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/user">
+            <resource path="/current">
+                <method name="GET" id="get_Current">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{user}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="user"/>
+                <method name="GET" id="get_User">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{user}/filter">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="user"/>
+                <method name="GET" id="get_UserFilter">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/login">
+                <method name="POST" id="post_Login">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="login"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="password"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/bylogin/{user}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="user"/>
+                <method name="GET" id="get_ByloginUser">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/filters/{user}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="user"/>
+                <method name="GET" id="get_FiltersUser">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/issue">
+            <method name="GET" id="get">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="updatedAfter"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="with"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="project"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="assignee"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="summary"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="priority"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="type"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="subsystem"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="state"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="affectsVersion"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fixedVersions"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fixedInBuild"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="permittedGroup"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="POST" id="post">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="project"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="assignee"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="summary"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="priority"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="type"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="subsystem"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="state"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="affectsVersion"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fixedVersions"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fixedInBuild"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="permittedGroup"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_Issue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="wikifyDescription"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="with"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Issue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="summary"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Issue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/description">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueDescription">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="wikifyDescription"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/count">
+                <method name="GET" id="get_Count">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="callback"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="rough"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="sync"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/counts">
+                <method name="POST" id="post_Counts">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="rough"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="sync"/>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/byid/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_ByidIssue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/byproject/{project}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_ByprojectProject">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="updatedAfter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="with"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/search">
+                <method name="GET" id="get_Search">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="updatedAfter"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/intellisense">
+                <method name="GET" id="get_Intellisense">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="project"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="filter"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/has/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_HasIssue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/exists">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueExists">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/attachments/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_AttachmentsIssue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/attachment">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueAttachment">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_IssueAttachment">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="name"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="authorLogin"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="created"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/attachment/{attachment}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="attachment"/>
+                <method name="GET" id="get_IssueAttachmentAttachment">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_IssueAttachmentAttachment">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/comments/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_CommentsIssue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/comment">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueComment">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/links/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_LinksIssue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/link">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueLink">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_IssueLink">
+                    <request>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/history">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueHistory">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="with"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/changes">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueChanges">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/attachment/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="POST" id="post_AttachmentIssue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="name"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/execute/{issue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="POST" id="post_ExecuteIssue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="comment"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="disableNotifications"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/execute">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="POST" id="post_IssueExecute">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="comment"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="disableNotifications"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="runAs"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/execute/intellisense">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueExecuteIntellisense">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="runAs"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/comment/{comment}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="comment"/>
+                <method name="DELETE" id="delete_IssueCommentComment">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="permanently"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/customField/{issue}/{fieldName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fieldName"/>
+                <method name="POST" id="post_CustomFieldIssueFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="value"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/tags">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueTags">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{issue}/descriptionWithRemovedMarkup">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="GET" id="get_IssueDescriptionWithRemovedMarkup">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/issueLinkType">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{name}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="name"/>
+                <method name="GET" id="get_Name">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Name">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="outwardName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="inwardName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="directed"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="aggregation"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Name">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="outwardName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="inwardName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="directed"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="aggregation"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Name">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/buildBundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/{buildName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="buildName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleNameBuildName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_BundleNameBuildName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="assembleDate"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleNameBuildName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="assembleDate"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleNameBuildName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/setup/jabber">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="POST" id="post">
+                <request>
+                    <representation mediaType="*/*"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/admin/setup">
+            <method name="POST" id="post">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="secretKey"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/user/search">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{savedQuery}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="savedQuery"/>
+                <method name="GET" id="get_SavedQuery">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_SavedQuery">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="projectShortName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="visibleForGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="updatableByGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="q"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_SavedQuery">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="visibleForGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="updatableByGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="q"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_SavedQuery">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/stateBundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/{stateName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="stateName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleNameStateName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_BundleNameStateName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isResolved"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleNameStateName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isResolved"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="colorIndex"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleNameStateName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/field">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{customFieldName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="customFieldName"/>
+                <method name="GET" id="get_CustomFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_CustomFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="type"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isPrivate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="visibleByDefault"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="autoAttached"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="typeName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_CustomFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isPrivate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="visibleByDefault"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="autoAttached"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_CustomFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/component">
+            <resource path="/searchSuggest">
+                <method name="GET" id="get_SearchSuggest">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="callback"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/comment">
+            <resource path="/{issue}/{commentDraft}/attachment">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="commentDraft"/>
+                <method name="POST" id="post_IssueCommentDraftAttachment">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="name"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/project">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="*/*"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{project}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_Project">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Project">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{projectId}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="projectId"/>
+                <method name="PUT" id="put_ProjectId">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="projectName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="startingNumber"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="projectLeadLogin"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/import">
+            <resource path="/{issue}/attachment">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="issue"/>
+                <method name="POST" id="post_IssueAttachment">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="test"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="authorLogin"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="created"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/users">
+                <method name="PUT" id="put_Users">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="test"/>
+                        <representation mediaType="application/xml"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{project}/issues">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="PUT" id="put_ProjectIssues">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="assigneeGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="test"/>
+                        <representation mediaType="application/xml"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/links">
+                <method name="PUT" id="put_Links">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="test"/>
+                        <representation mediaType="application/xml"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/permission">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/admin/project/{project}/customfield">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{customFieldName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="customFieldName"/>
+                <method name="GET" id="get_CustomFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_CustomFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="emptyFieldText"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_CustomFieldName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="emptyFieldText"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_CustomFieldName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/wiki">
+            <resource path="/wiki/{contextIssue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="contextIssue"/>
+                <method name="POST" id="post_WikiContextIssue">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="text"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/userBundle">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="PUT" id="put">
+                <request>
+                    <representation mediaType="application/xml"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{bundleName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="GET" id="get_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="plainUserList"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_BundleName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_BundleName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/individual/{userName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="userName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="PUT" id="put_BundleNameIndividualUserName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/group/{groupName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="groupName"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="PUT" id="put_BundleNameGroupGroupName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/individual/{fieldValue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fieldValue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="DELETE" id="delete_BundleNameIndividualFieldValue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{bundleName}/group/{fieldValue}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fieldValue"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="bundleName"/>
+                <method name="DELETE" id="delete_BundleNameGroupFieldValue">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/customfield/type">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{typeName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="typeName"/>
+                <method name="GET" id="get_TypeName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/project/{project}/build">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{build}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="build"/>
+                <method name="GET" id="get_Build">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Build">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="assembleDate"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Build">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="assembleDate"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Build">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/project/{project}/assignee">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/group">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_Group">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/individual">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_Individual">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/user">
+            <method name="GET" id="get">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="q"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="group"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="role"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="project"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="permission"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="onlineOnly"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="reporter"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="start"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="POST" id="post">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="login"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fullName"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="email"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="jabber"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{login}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="login"/>
+                <method name="GET" id="get_Login">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Login">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="fullName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="email"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="jabber"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="password"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Login">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{login}/group">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="login"/>
+                <method name="GET" id="get_LoginGroup">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{login}/group/{group}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="login"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="group"/>
+                <method name="POST" id="post_LoginGroupGroup">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_LoginGroupGroup">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{login}/role">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="login"/>
+                <method name="GET" id="get_LoginRole">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/export">
+            <resource path="/{project}/issues">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <method name="GET" id="get_ProjectIssues">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/links">
+                <method name="GET" id="get_Links">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="after"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="max"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/project/{project}/version">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+            <method name="GET" id="get">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="showReleased"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{version}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="version"/>
+                <method name="GET" id="get_Version">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Version">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="releaseDate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isReleased"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isArchived"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Version">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="description"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:long" style="query" name="releaseDate"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isReleased"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isArchived"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Version">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/command">
+            <resource path="/suggest">
+                <method name="GET" id="get_Suggest">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="issueIds"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="folder"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="noIssuesContext"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/underline">
+                <method name="GET" id="get_Underline">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="issueIds"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="folder"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="noIssuesContext"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/underlineAndSuggest">
+                <method name="GET" id="get_UnderlineAndSuggest">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="issueIds"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="folder"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="noIssuesContext"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/underlineAndSuggestAndCommands">
+                <method name="GET" id="get_UnderlineAndSuggestAndCommands">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="issueIds"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="folder"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="command"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="noIssuesContext"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/agile">
+            <method name="GET" id="get">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="q"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{projectShortName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="projectShortName"/>
+            </resource>
+        </resource>
+        <resource path="/workflow">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <method name="POST" id="post">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="autoAttachNewRulesToProjectId"/>
+                </request>
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/types">
+                <method name="GET" id="get_Types">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="projectId"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/version">
+                <method name="GET" id="get_Version">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/editable">
+                <method name="GET" id="get_Editable">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="workflowName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/model">
+                <method name="GET" id="get_Model">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="workflowName"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/octet-stream"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/distributive/{fileName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="fileName"/>
+                <method name="GET" id="get_DistributiveFileName">
+                    <response>
+                        <representation mediaType="application/zip"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{workflowName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="workflowName"/>
+                <method name="DELETE" id="delete_WorkflowName">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/project/{project}/subsystem">
+            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{subsystem}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="project"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="subsystem"/>
+                <method name="GET" id="get_Subsystem">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="PUT" id="put_Subsystem">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isDefault"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="defaultAssignee"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Subsystem">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="isDefault"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="defaultAssignee"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Subsystem">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/user/tag">
+            <method name="GET" id="get">
+                <response>
+                    <representation mediaType="application/xml; charset=UTF-8"/>
+                    <representation mediaType="application/json; charset=UTF-8"/>
+                </response>
+            </method>
+            <resource path="/{tag}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="tag"/>
+                <method name="GET" id="get_Tag">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="POST" id="post_Tag">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="newName"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="visibleForGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="updatableByGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="untagOnResolve"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+                <method name="DELETE" id="delete_Tag">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{tagName}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="template" name="tagName"/>
+                <method name="PUT" id="put_TagName">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="visibleForGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="updatableByGroup"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:boolean" style="query" name="untagOnResolve"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/search">
+            <resource path="/suggest">
+                <method name="GET" id="get_Suggest">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="wfId"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/underline">
+                <method name="GET" id="get_Underline">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="wfId"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/underlineAndSuggest">
+                <method name="GET" id="get_UnderlineAndSuggest">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="wfId"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:string" style="query" name="query"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="caret"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" type="xs:int" style="query" name="optionsLimit"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/x-javascript; charset=UTF-8"/>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/admin/statistics">
+            <resource path="/telemetry">
+                <method name="GET" id="get_Telemetry">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/browserUsage">
+                <method name="GET" id="get_BrowserUsage">
+                    <response>
+                        <representation mediaType="application/xml; charset=UTF-8"/>
+                        <representation mediaType="application/json; charset=UTF-8"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

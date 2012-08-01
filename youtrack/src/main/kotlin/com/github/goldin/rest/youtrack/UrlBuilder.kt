@@ -20,6 +20,12 @@ class UrlBuilder( url : String )
 
 
     /**
+     * http://evgeny-goldin.org/youtrack/rest/application.wadl
+     */
+    fun wadl(): String = "$url/rest/application.wadl"
+
+
+    /**
      * http://confluence.jetbrains.net/display/YTD4/Get+an+Issue
      */
     fun issue ( issueId : String ): String

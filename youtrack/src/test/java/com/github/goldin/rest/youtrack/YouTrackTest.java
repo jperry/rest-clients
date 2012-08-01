@@ -1,39 +1,49 @@
 package com.github.goldin.rest.youtrack;
 
+import static junit.framework.TestCase.*;
+import com.github.goldin.rest.common.BaseTest;
+import com.github.goldin.rest.common.HTTP;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.nio.charset.Charset;
-import java.security.SecureRandom;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
-import static junit.framework.TestCase.*;
+import java.util.zip.Adler32;
+import java.util.zip.CRC32;
 
 
 /**
  * {@link YouTrack} test.
  */
-public class YouTrackTest
+public class YouTrackTest extends BaseTest
 {
-
-    private final YouTrack yt = new YouTrack( "http://rest-clients.myjetbrains.com/youtrack/" );
+    private final YouTrack yt = new YouTrack( restClientsUrl );
 
     private DateFormat dateFormat;
     private Random     random;
+
 
     /**
      * Initializes {@link DateFormat} instance to format dates into "Mon Jul 19 20:20:38 2010"-like Strings (GMT timezone).
      * http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html
      */
     @Before
-    public void initDateFormat()
+    public void init()
     {
-        dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss yyyy" );
-        dateFormat.setTimeZone( TimeZone.getTimeZone( "GMT" ));
-        random     = new SecureRandom( String.valueOf( System.currentTimeMillis()).getBytes( Charset.forName( "UTF-8" )));
+        dateFormat = dateFormat( "EEE MMM dd HH:mm:ss yyyy", "GMT" );
+        random     = random();
+    }
+
+
+    @Test
+    public void testWadl() throws IOException
+    {
+        final String wadl = new HTTP().responseAsString( new UrlBuilder( jetbrainsUrl ).wadl());
+        assertEquals( 1880008272L, checksum( wadl, "UTF-8", new Adler32()));
+        assertEquals( 1654558566L, checksum( wadl, "UTF-8", new CRC32()));
+        assertEquals( toString( "/application.wadl" ).trim(), wadl.trim());
     }
 
 
@@ -156,12 +166,12 @@ public class YouTrackTest
     @Test
     public void testRetrieveIssues()
     {
-        testRetrieveIssues( yt.url,                               "pl",   random.nextInt( 350   ), 10 );
-        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "pl",   random.nextInt( 600   ), 10 );
-        testRetrieveIssues( "http://evgeny-goldin.org/youtrack/", "gc",   random.nextInt( 100   ), 10 );
-        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "JT",   random.nextInt( 15800 ), 10 );
-        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "IDEA", random.nextInt( 89000 ), 10 );
-        testRetrieveIssues( "http://youtrack.jetbrains.com/",     "TW",   random.nextInt( 22700 ), 10 );
+        testRetrieveIssues( restClientsUrl,  "pl",   random.nextInt( 350   ), 10 );
+        testRetrieveIssues( evgenyGoldinUrl, "pl",   random.nextInt( 600   ), 10 );
+        testRetrieveIssues( evgenyGoldinUrl, "gc",   random.nextInt( 100   ), 10 );
+        testRetrieveIssues( jetbrainsUrl,    "JT",   random.nextInt( 15800 ), 10 );
+        testRetrieveIssues( jetbrainsUrl,    "IDEA", random.nextInt( 89000 ), 10 );
+        testRetrieveIssues( jetbrainsUrl,    "TW",   random.nextInt( 22700 ), 10 );
     }
 
 
@@ -175,16 +185,16 @@ public class YouTrackTest
      */
     private void testRetrieveIssues( String youTrackUrl, String projectShortName, int issueStart, int numberOfIssues )
     {
-        final long     now = new Date().getTime();
-        final YouTrack yt  = new YouTrack( youTrackUrl );
+        final long     now      = new Date().getTime();
+        final YouTrack youTrack = new YouTrack( youTrackUrl );
 
         for ( int j = issueStart; j <= ( issueStart + numberOfIssues ); j++ )
         {
             String issueId = projectShortName + '-' + j;
-            if ( yt.issueExists( issueId ))
+            if ( youTrack.issueExists( issueId ))
             {
                 final Issue issue;
-                try   { issue = yt.issue( issueId ); }
+                try   { issue = youTrack.issue( issueId ); }
                 catch ( IssueNotFoundException ignored ) { continue; } // When issue is not visible to the guest user.
 
                 if ( issueId.equals( issue.getId())) // Issue was not moved.
@@ -222,11 +232,13 @@ public class YouTrackTest
     }
 
 
+
     @Test( expected = CommentNotFoundException.class )
     public void testNonExistingComment()
     {
         yt.issue( "pl-101" ).getComment( 3 );
     }
+
 
 
     @Test
