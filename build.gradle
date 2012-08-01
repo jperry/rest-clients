@@ -71,15 +71,17 @@ subprojects {
         compile     "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
                     "org.slf4j:slf4j-api:$slf4jVersion",
                     "com.google.guava:guava:$guavaVersion",
-                    "com.google.http-client:google-http-client:$googleHttpVersion"
+                    "com.google.http-client:google-http-client:$googleHttpVersion",
+                    "org.apache.httpcomponents:httpclient:4.2.1"
         runtime     "org.jetbrains.kotlin:kotlin-runtime:$kotlinVersion"
-        testCompile "junit:junit:$junitVersion"
+        testCompile "junit:junit:$junitVersion",
+                    files( compileTestKotlin.destinationDir )
         testRuntime "ch.qos.logback:logback-classic:$logbackVersion"
     }
 
 
     compileJava.dependsOn     compileKotlin
-    compileTestJava.dependsOn compileKotlin
+    compileTestJava.dependsOn compileKotlin, compileTestKotlin
 
 
     about        { dumpDependencies = true }
@@ -102,7 +104,11 @@ subprojects {
 
 
 subprojects.findAll{ it.name != 'common' }.each {
-    it.dependencies { compile project( ':common' ) }
+    Project p ->
+    p.dependencies {
+        compile     project( ':common' )
+        testCompile files( project( ':common' ).tasks.compileTestKotlin.destinationDir )
+    }
 }
 
 
