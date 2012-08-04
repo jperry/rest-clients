@@ -4,6 +4,7 @@ import static junit.framework.TestCase.*;
 import com.github.goldin.rest.common.BaseTest;
 import com.github.goldin.rest.common.HTTP;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class YouTrackTest extends BaseTest
 
 
     @Test
+    @Ignore
     public void testWadl() throws IOException
     {
         final String wadl = new HTTP().responseAsString( new UrlBuilder( jetbrainsUrl ).wadl());
