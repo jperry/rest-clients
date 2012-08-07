@@ -1,3 +1,2 @@
+rootProject.name = 'rest-clients'
 include 'common', 'youtrack', 'teamcity', 'artifactory'
-
-
